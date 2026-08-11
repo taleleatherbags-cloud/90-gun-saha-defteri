@@ -1,0 +1,1576 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>90 Günlük Saha Defteri</title>
+<meta name="description" content="YORUG, spor ve gitar için interaktif 90 günlük sistem: HAVE/BE/DO kartları, satış hesaplayıcı, günlük skor kartı, seri takibi ve haftalık değerlendirme.">
+<meta name="theme-color" content="#0F9483">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Saha Defteri">
+<meta name="mobile-web-app-capable" content="yes"><style>
+  :root{
+    --bg:#EEEBE2;
+    --surface:#FBF9F4;
+    --surface-2:#F2EFE6;
+    --ink:#24211B;
+    --ink-muted:#6B6759;
+    --border:#DAD5C6;
+    --grid-line:rgba(36,33,27,0.055);
+    --accent-yorug:#B8860B;
+    --accent-spor:#C7295A;
+    --accent-gitar:#5B4E9E;
+    --accent-system:#0F9483;
+    --status-critical:#A3261D;
+    --shadow:0 1px 2px rgba(36,33,27,0.06), 0 6px 18px rgba(36,33,27,0.05);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#16181A;
+      --surface:#1E2124;
+      --surface-2:#262A2E;
+      --ink:#EDEAE0;
+      --ink-muted:#9A968A;
+      --border:#34383C;
+      --grid-line:rgba(237,234,224,0.05);
+      --accent-yorug:#B6842B;
+      --accent-spor:#D9506F;
+      --accent-gitar:#8A7DC9;
+      --accent-system:#279684;
+      --status-critical:#E5726A;
+      --shadow:0 1px 2px rgba(0,0,0,0.3), 0 8px 22px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#16181A;
+    --surface:#1E2124;
+    --surface-2:#262A2E;
+    --ink:#EDEAE0;
+    --ink-muted:#9A968A;
+    --border:#34383C;
+    --grid-line:rgba(237,234,224,0.05);
+    --accent-yorug:#B6842B;
+    --accent-spor:#D9506F;
+    --accent-gitar:#8A7DC9;
+    --accent-system:#279684;
+    --status-critical:#E5726A;
+    --shadow:0 1px 2px rgba(0,0,0,0.3), 0 8px 22px rgba(0,0,0,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size:28px 28px;
+    color:var(--ink);
+    font-family:Charter,'Iowan Old Style',Georgia,'Times New Roman',serif;
+    line-height:1.5;
+    padding:0 0 80px;
+  }
+  h1,h2,h3,h4{
+    font-family:Bahnschrift,'Arial Narrow','Segoe UI Semibold',sans-serif;
+    font-weight:600;
+    text-wrap:balance;
+    margin:0;
+  }
+  a{color:inherit;}
+  textarea,input,button,select{font:inherit;}
+  .mono{font-family:'Cascadia Mono','Consolas',ui-monospace,SFMono-Regular,monospace;font-variant-numeric:tabular-nums;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;}
+  .eyebrow{
+    font-family:Bahnschrift,'Arial Narrow',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.72rem;
+    color:var(--ink-muted);
+    margin:0 0 6px;
+  }
+  section{padding:44px 0;}
+  .section-head{max-width:640px;margin-bottom:22px;}
+  .section-head h2{font-size:1.5rem;letter-spacing:0.01em;}
+  .section-head p{color:var(--ink-muted);margin:8px 0 0;font-size:0.96rem;}
+
+  .divider{
+    display:flex;align-items:center;gap:14px;
+    margin:0;padding:0;
+    color:var(--ink-muted);
+  }
+  .divider::before,.divider::after{
+    content:"";flex:1;border-top:1px dashed var(--border);
+  }
+  .divider span{font-family:Bahnschrift,sans-serif;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;white-space:nowrap;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    border-bottom:1px solid var(--border);
+    padding:36px 0 30px;
+  }
+  .hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;}
+  .hero h1{font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:0.005em;}
+  .hero .tagline{margin-top:8px;font-family:Charter,Georgia,serif;font-style:italic;color:var(--ink-muted);font-size:1rem;}
+  .day-badge{
+    text-align:right;flex-shrink:0;
+  }
+  .day-badge .num{font-family:'Cascadia Mono',monospace;font-size:2.6rem;font-weight:700;line-height:1;color:var(--accent-system);font-variant-numeric:tabular-nums;}
+  .day-badge .of{font-size:0.85rem;color:var(--ink-muted);}
+  .progress-rail{margin-top:22px;}
+  .progress-bar{height:10px;border-radius:6px;background:var(--surface-2);border:1px solid var(--border);overflow:hidden;}
+  .progress-bar > div{height:100%;background:var(--accent-system);border-radius:6px 0 0 6px;transition:width .4s ease;}
+  .progress-labels{display:flex;justify-content:space-between;font-size:0.76rem;color:var(--ink-muted);margin-top:6px;}
+  .hero-stats{display:flex;gap:14px;margin-top:20px;flex-wrap:wrap;}
+
+  /* ---------- COMPONENTS ---------- */
+  .stat-tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;flex-direction:column;gap:2px;box-shadow:var(--shadow);min-width:130px;}
+  .stat-tile .stat-value{font-family:'Cascadia Mono',monospace;font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;}
+  .stat-tile .stat-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-muted);}
+
+  label.field-block{display:block;margin-top:14px;}
+  .field-label{display:block;font-size:0.76rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-muted);margin-bottom:5px;}
+  .field-label em{font-style:italic;text-transform:none;letter-spacing:0;opacity:0.85;}
+  textarea,input[type="text"],input[type="number"],input[type="date"]{
+    width:100%;font-family:Charter,Georgia,serif;font-size:0.94rem;color:var(--ink);
+    background:var(--surface-2);border:1px solid var(--border);border-radius:7px;
+    padding:9px 11px;resize:vertical;
+  }
+  input[type="number"],input[type="date"]{font-family:'Cascadia Mono',monospace;}
+  textarea{min-height:56px;}
+  :focus-visible{outline:2px solid var(--accent-system);outline-offset:1px;}
+
+  .btn{
+    font-family:Bahnschrift,'Arial Narrow',sans-serif;font-size:0.82rem;letter-spacing:0.03em;
+    padding:9px 16px;border-radius:7px;border:1px solid var(--border);
+    background:var(--surface);color:var(--ink);cursor:pointer;
+  }
+  .btn:hover{background:var(--surface-2);}
+  .btn-primary{background:var(--accent-system);border-color:var(--accent-system);color:#fff;}
+  .btn-primary:hover{filter:brightness(1.06);}
+  .btn-danger.danger-armed{background:var(--status-critical);border-color:var(--status-critical);color:#fff;}
+  .btn-ghost{background:transparent;}
+  .btn:disabled{opacity:0.5;cursor:not-allowed;}
+
+  .badge{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;padding:3px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);color:var(--ink-muted);}
+  .badge.critical{color:var(--status-critical);border-color:var(--status-critical);background:color-mix(in srgb, var(--status-critical) 12%, var(--surface));}
+
+  /* ---------- FRAMEWORK DIAGRAM ---------- */
+  figure.diagram{margin:0;}
+  figure.diagram svg{width:100%;height:auto;display:block;color:var(--ink);}
+  figure.diagram figcaption{margin-top:12px;font-size:0.88rem;color:var(--ink-muted);}
+  .diag-node text{font-family:Bahnschrift,sans-serif;font-size:13px;letter-spacing:0.04em;}
+  .diag-cap{font-family:Charter,Georgia,serif;font-style:italic;font-size:11px;fill:var(--ink-muted);}
+
+  /* ---------- FRONT CARDS ---------- */
+  .fronts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;}
+  .front-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;
+    box-shadow:var(--shadow);border-top:4px solid var(--accent);
+  }
+  .front-card :focus-visible{outline-color:var(--accent);}
+  .front-head{display:flex;align-items:flex-start;gap:12px;}
+  .front-head .front-titles{flex:1;min-width:0;}
+  .icon-btn{background:none;border:none;color:var(--ink-muted);opacity:0.65;cursor:pointer;font-size:0.9rem;padding:2px 4px;flex-shrink:0;}
+  .icon-btn:hover{opacity:1;color:var(--ink);}
+  .front-edit-form{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0;}
+  .front-edit-form input{font-size:0.9rem;padding:6px 9px;}
+  .front-edit-form .form-actions{display:flex;gap:6px;}
+  .streak-tile .streak-name{font-family:Bahnschrift,sans-serif;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--accent);}
+  .front-icon{width:38px;height:38px;flex-shrink:0;color:var(--accent);background:color-mix(in srgb, var(--accent) 14%, transparent);border-radius:10px;padding:7px;}
+  .front-icon svg{width:100%;height:100%;}
+  .front-head h3{font-size:1.15rem;letter-spacing:0.03em;}
+  .front-tag{margin:1px 0 0;font-size:0.76rem;color:var(--ink-muted);font-family:Charter,Georgia,serif;font-style:italic;}
+  .hbd{margin-top:16px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;}
+  .hbd-row .hbd-label{display:block;font-family:Bahnschrift,sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.08em;color:var(--accent);margin-bottom:4px;}
+  .hbd-label em{display:block;font-family:Charter,Georgia,serif;font-style:italic;font-weight:400;letter-spacing:0;color:var(--ink-muted);font-size:0.78rem;text-transform:none;margin-top:1px;}
+  .hbd-row textarea{min-height:46px;font-size:0.88rem;}
+  .hbd-arrow{display:flex;justify-content:center;margin:6px 0;color:var(--ink-muted);opacity:0.6;}
+  .hbd-arrow svg{width:16px;height:16px;}
+
+  /* ---------- CALC ---------- */
+  .calc-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow);border-top:4px solid var(--accent-yorug);}
+  .calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:6px;}
+  .calc-grid label{display:block;}
+  .calc-out{display:flex;gap:14px;flex-wrap:wrap;margin-top:20px;}
+  .funnel{margin-top:20px;display:flex;flex-direction:column;gap:6px;}
+  .funnel-row{display:flex;align-items:center;gap:10px;}
+  .funnel-bar{height:26px;border-radius:5px;background:var(--accent-yorug);}
+  .funnel-label{width:150px;flex-shrink:0;font-size:0.8rem;color:var(--ink-muted);}
+  .funnel-val{font-family:'Cascadia Mono',monospace;font-size:0.85rem;font-variant-numeric:tabular-nums;}
+
+  /* ---------- BASELINE / CHECKPOINTS ---------- */
+  .measure-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 16px;margin-top:14px;}
+  @media(max-width:640px){.measure-grid{grid-template-columns:repeat(2,1fr);}}
+  .measure-grid label{display:block;}
+  .measure-grid .field-label{font-size:0.68rem;}
+  .checkpoint-tabs{display:flex;gap:8px;margin-top:26px;flex-wrap:wrap;}
+  .cp-tab{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);font-family:Bahnschrift,sans-serif;font-size:0.78rem;cursor:pointer;color:var(--ink-muted);}
+  .cp-tab.active{background:var(--accent-spor);border-color:var(--accent-spor);color:#fff;}
+  .cp-panel{display:none;margin-top:14px;}
+  .cp-panel.active{display:block;}
+  .cp-delta{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;}
+  .delta-chip{font-family:'Cascadia Mono',monospace;font-size:0.78rem;padding:4px 10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);}
+
+  /* ---------- CHECKLISTS ---------- */
+  .checklist-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+  .checklist-col{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:var(--shadow);border-top:4px solid var(--accent);}
+  .checklist-sub{margin-top:14px;}
+  .checklist-sub h4{font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-muted);margin-bottom:8px;}
+  .cl-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+  .cl-item{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--border);border-radius:7px;padding:6px 8px;font-size:0.86rem;}
+  .cl-item.done span.txt{text-decoration:line-through;opacity:0.55;}
+  .cl-item .txt{flex:1;}
+  .cl-item button{background:none;border:none;color:var(--ink-muted);cursor:pointer;font-size:0.9rem;padding:2px 4px;}
+  .cl-add{display:flex;gap:6px;margin-top:8px;}
+  .cl-add input{flex:1;font-size:0.84rem;padding:6px 9px;}
+  .cl-add button{flex-shrink:0;}
+
+  /* ---------- TIME AUDIT ---------- */
+  table{width:100%;border-collapse:collapse;font-size:0.88rem;}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);}
+  th{font-family:Bahnschrift,sans-serif;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-muted);font-weight:600;}
+  td.num{font-family:'Cascadia Mono',monospace;font-variant-numeric:tabular-nums;}
+  .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--surface);box-shadow:var(--shadow);}
+  .tag-pill{border:none;border-radius:999px;padding:3px 10px;font-size:0.8rem;cursor:pointer;}
+  .tag-pill.green{background:color-mix(in srgb, var(--accent-system) 22%, transparent);color:var(--accent-system);}
+  .tag-pill.red{background:color-mix(in srgb, var(--status-critical) 18%, transparent);color:var(--status-critical);}
+  .tag-pill.neutral{background:var(--surface-2);color:var(--ink-muted);}
+  .audit-form{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;}
+  .audit-form input[type="text"]{flex:2;min-width:140px;}
+  .audit-form input[type="number"]{flex:1;min-width:90px;}
+  .audit-totals{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;}
+
+  /* ---------- MILESTONES ---------- */
+  .milestone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;}
+  .milestone-col{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:var(--shadow);border-top:4px solid var(--accent);}
+  .ms-block{border-top:1px dashed var(--border);padding-top:12px;margin-top:12px;}
+  .ms-block:first-of-type{border-top:none;padding-top:0;margin-top:14px;}
+  .ms-head{display:flex;justify-content:space-between;align-items:baseline;}
+  .ms-head .ms-day{font-family:Bahnschrift,sans-serif;font-weight:600;color:var(--accent);font-size:0.85rem;}
+  .ms-head .ms-date{font-family:'Cascadia Mono',monospace;font-size:0.72rem;color:var(--ink-muted);}
+  .ms-check{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:0.8rem;color:var(--ink-muted);}
+
+  /* ---------- SCORECARD ---------- */
+  .score-form{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);}
+  .score-form .row1{display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;}
+  .score-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px;}
+  .score-group{border:1px solid var(--border);border-radius:10px;padding:12px;border-left:4px solid var(--accent);background:var(--surface-2);}
+  .score-group h4{font-size:0.85rem;letter-spacing:0.03em;color:var(--accent);}
+  .score-group label.chk{display:flex;align-items:center;gap:7px;margin-top:8px;font-size:0.86rem;}
+  .score-group .mini-fields{display:flex;gap:8px;margin-top:8px;}
+  .score-group .mini-fields label{flex:1;font-size:0.72rem;color:var(--ink-muted);}
+  .score-group input[type="checkbox"]{width:16px;height:16px;accent-color:var(--accent);}
+
+  .streak-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px;}
+  .streak-tile{flex:1;min-width:180px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);border-top:4px solid var(--accent);}
+  .streak-tile .streak-num{font-family:'Cascadia Mono',monospace;font-size:1.7rem;font-weight:700;color:var(--accent);}
+  .streak-tile .streak-num .flame{font-size:1.1rem;}
+  .streak-tile .ns{margin-top:8px;font-size:0.78rem;color:var(--ink-muted);}
+  .streak-tile .ns b{color:var(--ink);font-family:'Cascadia Mono',monospace;}
+
+  .heatmap-block{margin-top:24px;}
+  .heatmap-line{display:flex;align-items:center;gap:10px;margin-top:10px;}
+  .heatmap-name{width:70px;flex-shrink:0;font-size:0.78rem;font-family:Bahnschrift,sans-serif;color:var(--accent);}
+  .heatmap-cells{display:flex;gap:3px;flex-wrap:wrap;}
+  .heatmap-cell{width:13px;height:13px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border);}
+  .heatmap-legend{display:flex;gap:16px;margin-top:10px;font-size:0.74rem;color:var(--ink-muted);align-items:center;}
+  .heatmap-legend .sw{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:4px;vertical-align:-1px;}
+
+  .spark-block{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;}
+  .spark-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;box-shadow:var(--shadow);}
+  .spark-card h4{font-size:0.8rem;color:var(--ink-muted);font-weight:600;}
+  .spark-card svg{width:100%;height:auto;margin-top:6px;}
+
+  .log-table-wrap{margin-top:26px;}
+
+  /* ---------- WEEKLY ---------- */
+  .weekly-form{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;box-shadow:var(--shadow);border-top:4px solid var(--accent-system);}
+  .weekly-form .row1{display:flex;gap:14px;flex-wrap:wrap;}
+  .weekly-form .row1 label{min-width:170px;}
+  .weekly-list{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .weekly-item{border-left:3px solid var(--accent-system);background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 16px;box-shadow:var(--shadow);}
+  .weekly-item .wk-date{font-family:'Cascadia Mono',monospace;font-size:0.76rem;color:var(--ink-muted);}
+  .weekly-item p{margin:8px 0;font-size:0.9rem;}
+  .weekly-item .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+  .weekly-item .chip{font-size:0.78rem;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;padding:3px 10px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--border);padding:30px 0 10px;}
+  .footer-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  #statusLine{font-size:0.8rem;color:var(--accent-system);min-height:1.2em;margin-top:10px;}
+  #statusLine.err{color:var(--status-critical);}
+  .closing{margin-top:30px;font-family:Charter,Georgia,serif;font-style:italic;color:var(--ink-muted);font-size:0.98rem;max-width:520px;}
+  .file-btn{position:relative;overflow:hidden;display:inline-block;}
+  .file-btn input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
+
+  /* ---------- PROFILES ---------- */
+  .profile-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px;}
+  .profile-row-label{font-family:Bahnschrift,sans-serif;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-muted);flex-shrink:0;}
+  .profile-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .profile-pill{display:flex;align-items:center;gap:6px;padding:5px 10px 5px 5px;border-radius:999px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-family:Bahnschrift,sans-serif;font-size:0.78rem;color:var(--ink-muted);}
+  .profile-pill:hover{background:var(--surface-2);}
+  .profile-pill.active{background:var(--accent-system);border-color:var(--accent-system);color:#fff;cursor:default;}
+  .profile-pill .avatar{width:20px;height:20px;border-radius:50%;background:var(--surface-2);display:flex;align-items:center;justify-content:center;font-size:0.64rem;font-weight:700;color:var(--ink);flex-shrink:0;}
+  .profile-pill.active .avatar{background:rgba(255,255,255,0.28);color:#fff;}
+  .profile-pill .pill-btn{background:none;border:none;color:inherit;opacity:0.75;cursor:pointer;font-size:0.82rem;padding:0 0 0 1px;line-height:1;}
+  .profile-pill .pill-btn:hover{opacity:1;}
+  .profile-pill .pill-btn.danger-armed{color:#fff;font-weight:600;opacity:1;}
+  .profile-pill.active .pill-btn.danger-armed{text-decoration:underline;}
+  .profile-add-form,.profile-rename-form{display:flex;gap:6px;align-items:center;}
+  .profile-add-form input,.profile-rename-form input{width:120px;font-size:0.78rem;padding:5px 9px;}
+</style>
+</head>
+<body>
+
+
+<div class="hero">
+  <div class="wrap">
+    <div class="profile-row">
+      <span class="profile-row-label">KullanÄ±cÄ±</span>
+      <div class="profile-bar" id="profileBar"></div>
+    </div>
+    <div class="hero-top">
+      <div>
+        <p class="eyebrow">Saha Defteri &middot; 11 AÄŸustos &rarr; 9 KasÄ±m 2026</p>
+        <h1>90 GÃ¼nlÃ¼k Yeniden YapÄ±lanma</h1>
+        <p class="tagline">YORUG &rarr; Fiziksel Disiplin &rarr; Elektro Gitar. Zirve yapmak deÄŸil, geri dÃ¶nemeyeceÄŸin bir sistem kurmak.</p>
+      </div>
+      <div class="day-badge">
+        <div class="num mono" id="heroDay">â€”</div>
+        <div class="of" id="heroOf">gÃ¼n</div>
+      </div>
+    </div>
+    <div class="progress-rail">
+      <div class="progress-bar"><div id="heroBarFill" style="width:0%"></div></div>
+      <div class="progress-labels">
+        <span id="heroStartLabel"></span>
+        <span id="heroPercentLabel"></span>
+        <span id="heroEndLabel"></span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-tile"><span class="stat-value mono" id="statConsistency">â€”</span><span class="stat-label">Sistem tutarlÄ±lÄ±ÄŸÄ±</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="statLoggedDays">â€”</span><span class="stat-label">KayÄ±t tutulan gÃ¼n</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="statAll3">â€”</span><span class="stat-label">3/3 tamamlanan gÃ¼n</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<section id="framework">
+  <div class="section-head">
+    <p class="eyebrow">Sistem</p>
+    <h2>DÃ¶ngÃ¼: Envision &middot; Delete &middot; Install &middot; Track</h2>
+    <p>90 gÃ¼n boyunca dÃ¶rt fazÄ± tekrar tekrar dÃ¶nÃ¼yoruz. AmaÃ§ bir kerede mÃ¼kemmel olmak deÄŸil, dÃ¶ngÃ¼yÃ¼ haftalÄ±k Ã§evirmek.</p>
+  </div>
+  <figure class="diagram">
+    <svg viewBox="0 0 800 210" role="img" aria-label="Envision, Delete, Install, Track fazlarÄ± sÄ±rayla akar; Track fazÄ±ndan haftalÄ±k dÃ¼zeltmeyle tekrar Envision fazÄ±na dÃ¶nÃ¼lÃ¼r.">
+      <defs>
+        <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <polygon points="0 0, 7 3, 0 6" fill="currentColor"></polygon>
+        </marker>
+      </defs>
+      <!-- loop-back arrow -->
+      <path d="M 700 90 C 700 20, 100 20, 100 90" fill="none" stroke="var(--accent-system)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrowHead)"></path>
+      <text x="400" y="26" text-anchor="middle" class="diag-cap">haftalÄ±k dÃ¼zelt</text>
+
+      <g class="diag-node">
+        <rect x="20" y="90" width="160" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <text x="100" y="115" text-anchor="middle" font-weight="600">ENVISION</text>
+        <text x="100" y="134" text-anchor="middle" class="diag-cap">nereye gidiyorum?</text>
+      </g>
+      <line x1="180" y1="120" x2="218" y2="120" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrowHead)"></line>
+      <text x="199" y="112" text-anchor="middle" class="diag-cap">hedef net</text>
+
+      <g class="diag-node">
+        <rect x="220" y="90" width="160" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <text x="300" y="115" text-anchor="middle" font-weight="600">DELETE</text>
+        <text x="300" y="134" text-anchor="middle" class="diag-cap">neyi Ã§Ä±karÄ±yorum?</text>
+      </g>
+      <line x1="380" y1="120" x2="418" y2="120" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrowHead)"></line>
+      <text x="399" y="112" text-anchor="middle" class="diag-cap">yer aÃ§Ä±ldÄ±</text>
+
+      <g class="diag-node">
+        <rect x="420" y="90" width="160" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <text x="500" y="115" text-anchor="middle" font-weight="600">INSTALL</text>
+        <text x="500" y="134" text-anchor="middle" class="diag-cap">neyi kolaylaÅŸtÄ±rÄ±yorum?</text>
+      </g>
+      <line x1="580" y1="120" x2="618" y2="120" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrowHead)"></line>
+      <text x="599" y="112" text-anchor="middle" class="diag-cap">sistem kuruldu</text>
+
+      <g class="diag-node">
+        <rect x="620" y="90" width="160" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
+        <text x="700" y="115" text-anchor="middle" font-weight="600">TRACK</text>
+        <text x="700" y="134" text-anchor="middle" class="diag-cap">Ã§alÄ±ÅŸÄ±yor mu?</text>
+      </g>
+
+      <text x="400" y="185" text-anchor="middle" class="diag-cap">90 GÃœN &middot; SIFIR GÃœN YOK</text>
+    </svg>
+    <figcaption>Ã–nce hedefi netleÅŸtir (Envision), seni geri Ã§eken ÅŸeyi Ã§Ä±kar (Delete), doÄŸru davranÄ±ÅŸÄ± kolaylaÅŸtÄ±r (Install), sonra Ã¶lÃ§ ve haftada bir dÃ¼zelt (Track) â€” sonra baÅŸtan.</figcaption>
+  </figure>
+</section>
+
+<div class="divider"><span>ÃœÃ§ Cephe</span></div>
+
+<section id="fronts">
+  <div class="section-head">
+    <p class="eyebrow">Envision &middot; Have &rarr; Be &rarr; Do</p>
+    <h2>Kim olduÄŸunu davranÄ±ÅŸlarÄ±n belirleyecek</h2>
+    <p>Her cephe iÃ§in Ã¶nce sonucu (HAVE), sonra o sonuca sahip kiÅŸiyi (BE), sonra o kiÅŸinin dÃ¼zenli yaptÄ±ÄŸÄ± ÅŸeyi (DO) tanÄ±mla. SonuÃ§ davranÄ±ÅŸtan gelir; davranÄ±ÅŸ kimliÄŸin parÃ§asÄ± olursa kalÄ±cÄ± olur.</p>
+  </div>
+  <div class="fronts-grid" id="frontsGrid"></div>
+</section>
+
+<section id="calc">
+  <div class="section-head">
+    <p class="eyebrow" id="calcEyebrow">Reverse Engineer &middot; YORUG</p>
+    <h2>SatÄ±ÅŸ matematiÄŸi</h2>
+    <p>"YORUG'u bÃ¼yÃ¼teceÄŸim" bir mekanizma deÄŸil. SonuÃ§tan geriye doÄŸru hesapla: hedef satÄ±ÅŸ &rarr; gereken dÃ¶nÃ¼ÅŸÃ¼m &rarr; gereken ziyaretÃ§i &rarr; gÃ¼nlÃ¼k trafik hedefi.</p>
+  </div>
+  <div class="calc-card">
+    <div class="calc-grid">
+      <label><span class="field-label">Hedef satÄ±ÅŸ</span><input type="number" min="0" id="calcTargetSales" data-scope="calc" data-field="targetSales"></label>
+      <label><span class="field-label">KaÃ§ gÃ¼nde</span><input type="number" min="1" id="calcWindow" data-scope="calc" data-field="salesWindow"></label>
+      <label><span class="field-label">DÃ¶nÃ¼ÅŸÃ¼m oranÄ± (%)</span><input type="number" min="0.01" step="0.01" id="calcConv" data-scope="calc" data-field="convRate"></label>
+    </div>
+    <div class="calc-out">
+      <div class="stat-tile"><span class="stat-value mono" id="calcOutVisitors">â€”</span><span class="stat-label">Gereken toplam ziyaretÃ§i</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="calcOutDaily">â€”</span><span class="stat-label">GÃ¼nlÃ¼k ziyaretÃ§i hedefi</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="calcOutPerDay">â€”</span><span class="stat-label">Hedef satÄ±ÅŸ / gÃ¼n</span></div>
+    </div>
+    <div class="funnel" id="calcFunnel"></div>
+    <label class="field-block"><span class="field-label">Bu ziyaretÃ§iler nereden gelecek? (Reels, reklam, mevcut takipÃ§i, influencer, organik arama, DMâ€¦)</span>
+      <textarea data-scope="goal" data-front="yorug" data-field="trafficSources" placeholder="Ã–rn: haftada 3 reels + haftalÄ±k 500â‚º retargeting reklamÄ± + gÃ¼nlÃ¼k 15 hikaye DM'iâ€¦"></textarea>
+    </label>
+  </div>
+</section>
+
+<div class="divider"><span id="dividerSporLabel">Spor &middot; Ã–lÃ§Ã¼mler</span></div>
+
+<section id="baseline">
+  <div class="section-head">
+    <p class="eyebrow" id="baselineEyebrow">Envision &middot; Spor</p>
+    <h2>BaÅŸlangÄ±Ã§ Ã¶lÃ§Ã¼mleri &amp; 30/60/90 kontrol noktalarÄ±</h2>
+    <p>GÃ¼n 1'de bir kere Ã¶lÃ§, sonra 30/60/90. gÃ¼n iÅŸaretlerinde tekrar Ã¶lÃ§ â€” fark otomatik hesaplanÄ±r.</p>
+  </div>
+  <div class="calc-card" style="border-top-color:var(--accent-spor)">
+    <h3 style="font-size:1rem;">GÃ¼n 1 &middot; BaÅŸlangÄ±Ã§</h3>
+    <div class="measure-grid">
+      <label><span class="field-label">Tarih</span><input type="date" data-scope="baseline" data-field="date"></label>
+      <label><span class="field-label">Kilo (kg)</span><input type="number" step="0.1" data-scope="baseline" data-field="kilo"></label>
+      <label><span class="field-label">Bel (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="bel"></label>
+      <label><span class="field-label">GÃ¶ÄŸÃ¼s (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="gogus"></label>
+      <label><span class="field-label">Kol (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="kol"></label>
+      <label><span class="field-label">Bacak (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="bacak"></label>
+      <label style="grid-column:span 2;"><span class="field-label">Temel hareket aÄŸÄ±rlÄ±klarÄ±</span><input type="text" placeholder="squat 40kg, press 20kg, row 30kgâ€¦" data-scope="baseline" data-field="lifts"></label>
+      <label style="grid-column:span 2;"><span class="field-label">Kondisyon (Ã¶r. 2km sÃ¼resi)</span><input type="text" data-scope="baseline" data-field="kondisyon"></label>
+    </div>
+
+    <div class="checkpoint-tabs" id="cpTabs">
+      <button class="cp-tab active" data-cp="d30">30. GÃ¼n</button>
+      <button class="cp-tab" data-cp="d60">60. GÃ¼n</button>
+      <button class="cp-tab" data-cp="d90">90. GÃ¼n</button>
+    </div>
+    <div class="cp-panel active" data-cp-panel="d30">
+      <div class="measure-grid">
+        <label><span class="field-label">Kilo (kg)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="kilo"></label>
+        <label><span class="field-label">Bel (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="bel"></label>
+        <label><span class="field-label">GÃ¶ÄŸÃ¼s (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="gogus"></label>
+        <label><span class="field-label">Kol (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="kol"></label>
+        <label><span class="field-label">Bacak (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="bacak"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Temel hareket aÄŸÄ±rlÄ±klarÄ±</span><input type="text" data-scope="checkpoint" data-checkpoint="d30" data-field="lifts"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Kondisyon</span><input type="text" data-scope="checkpoint" data-checkpoint="d30" data-field="kondisyon"></label>
+      </div>
+    </div>
+    <div class="cp-panel" data-cp-panel="d60">
+      <div class="measure-grid">
+        <label><span class="field-label">Kilo (kg)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="kilo"></label>
+        <label><span class="field-label">Bel (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="bel"></label>
+        <label><span class="field-label">GÃ¶ÄŸÃ¼s (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="gogus"></label>
+        <label><span class="field-label">Kol (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="kol"></label>
+        <label><span class="field-label">Bacak (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="bacak"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Temel hareket aÄŸÄ±rlÄ±klarÄ±</span><input type="text" data-scope="checkpoint" data-checkpoint="d60" data-field="lifts"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Kondisyon</span><input type="text" data-scope="checkpoint" data-checkpoint="d60" data-field="kondisyon"></label>
+      </div>
+    </div>
+    <div class="cp-panel" data-cp-panel="d90">
+      <div class="measure-grid">
+        <label><span class="field-label">Kilo (kg)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="kilo"></label>
+        <label><span class="field-label">Bel (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="bel"></label>
+        <label><span class="field-label">GÃ¶ÄŸÃ¼s (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="gogus"></label>
+        <label><span class="field-label">Kol (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="kol"></label>
+        <label><span class="field-label">Bacak (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="bacak"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Temel hareket aÄŸÄ±rlÄ±klarÄ±</span><input type="text" data-scope="checkpoint" data-checkpoint="d90" data-field="lifts"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Kondisyon</span><input type="text" data-scope="checkpoint" data-checkpoint="d90" data-field="kondisyon"></label>
+      </div>
+    </div>
+    <div class="cp-delta" id="cpDelta"></div>
+  </div>
+</section>
+
+<div class="divider"><span>Delete &amp; Install</span></div>
+
+<section id="checklists">
+  <div class="section-head">
+    <p class="eyebrow">Delete &middot; Install</p>
+    <h2>Ejderhalardan uzak dur, doÄŸru davranÄ±ÅŸÄ± kolaylaÅŸtÄ±r</h2>
+    <p>Ejderhayla savaÅŸma â€” ona ulaÅŸmayÄ± zorlaÅŸtÄ±r. Ä°yi davranÄ±ÅŸÄ± ise "karar vermeden" yapabileceÄŸin kadar kolaylaÅŸtÄ±r (habit stacking).</p>
+  </div>
+  <div class="checklist-grid" id="checklistGrid"></div>
+</section>
+
+<section id="timeaudit">
+  <div class="section-head">
+    <p class="eyebrow">Delete &middot; Zaman Denetimi</p>
+    <h2>Bu saat beni hedefe mi gÃ¶tÃ¼rÃ¼yor?</h2>
+    <p>YaptÄ±ÄŸÄ±n ÅŸeyi yaz, sÃ¼resini gir, sonra etikete tÄ±klayarak ğŸŸ¢ (hedefe gÃ¶tÃ¼rÃ¼yor) / ğŸ”´ (uzaklaÅŸtÄ±rÄ±yor) / âšª (nÃ¶tr) arasÄ±nda geÃ§iÅŸ yap.</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Etkinlik</th><th>SÃ¼re (dk)</th><th>Etiket</th><th></th></tr></thead>
+      <tbody id="auditBody"></tbody>
+    </table>
+  </div>
+  <div class="audit-form">
+    <input type="text" id="auditActivity" placeholder="Etkinlik (Ã¶r. Instagram kaydÄ±rma)">
+    <input type="number" id="auditMinutes" placeholder="dk" min="1">
+    <button class="btn btn-primary" id="auditAdd">Ekle</button>
+  </div>
+  <div class="audit-totals">
+    <div class="stat-tile"><span class="stat-value mono" id="auditGreenTotal">â€”</span><span class="stat-label">ğŸŸ¢ dakika</span></div>
+    <div class="stat-tile"><span class="stat-value mono" id="auditRedTotal">â€”</span><span class="stat-label">ğŸ”´ dakika</span></div>
+  </div>
+</section>
+
+<div class="divider"><span>30 / 60 / 90</span></div>
+
+<section id="milestones">
+  <div class="section-head">
+    <p class="eyebrow">Envision &middot; Kilometre TaÅŸlarÄ±</p>
+    <h2>90 gÃ¼nÃ¼n sonunda neyi baÅŸarmÄ±ÅŸ sayÄ±lacaksÄ±n?</h2>
+    <p>BulanÄ±k niyeti ("gitar Ã¶ÄŸrenmek istiyorum") Ã¶lÃ§Ã¼lebilir bir tanÄ±ma Ã§evir. UlaÅŸtÄ±ÄŸÄ±nda kutuyu iÅŸaretle.</p>
+  </div>
+  <div class="milestone-grid" id="milestoneGrid"></div>
+</section>
+
+<div class="divider"><span>Track</span></div>
+
+<section id="scorecard">
+  <div class="section-head">
+    <p class="eyebrow">Track &middot; GÃ¼nlÃ¼k Skor KartÄ±</p>
+    <h2>BugÃ¼nÃ¼ kaydet</h2>
+    <p>KÃ¶tÃ¼ bir gÃ¼n bile "sÄ±fÄ±r gÃ¼n" deÄŸildir â€” pazarlÄ±ksÄ±z minimum yeterli. Never miss twice: iki gÃ¼n Ã¼st Ã¼ste aynÄ± cepheyi kaÃ§Ä±rÄ±rsan burada uyarÄ± Ã§Ä±kar.</p>
+  </div>
+  <form class="score-form" id="scoreForm">
+    <div class="row1">
+      <label><span class="field-label">Tarih</span><input type="date" id="scoreDate" required></label>
+      <button type="submit" class="btn btn-primary">GÃ¼nÃ¼ kaydet</button>
+      <span id="scoreFormHint" style="font-size:0.78rem;color:var(--ink-muted);"></span>
+    </div>
+    <div class="score-groups" id="scoreGroups"></div>
+  </form>
+
+  <div class="streak-row" id="streakRow"></div>
+
+  <div class="heatmap-block">
+    <h3 style="font-size:1rem;">Son 30 gÃ¼n</h3>
+    <div id="heatmapLines"></div>
+    <div class="heatmap-legend">
+      <span><span class="sw" style="background:var(--surface-2);border:1px solid var(--border);"></span>kayÄ±t yok</span>
+      <span><span class="sw" style="background:transparent;border:1.5px solid var(--ink-muted);opacity:.6;"></span>kaÃ§Ä±rÄ±ldÄ±</span>
+      <span><span class="sw" style="background:var(--ink-muted);"></span>yapÄ±ldÄ±</span>
+    </div>
+  </div>
+
+  <div class="spark-block" id="sparkBlock"></div>
+
+  <div class="log-table-wrap">
+    <h3 style="font-size:1rem;">TÃ¼m kayÄ±tlar</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tarih</th><th id="thYorugName">YORUG</th><th>SatÄ±ÅŸ</th><th>ZiyaretÃ§i</th><th id="thSporName">Spor</th><th>dk</th><th id="thGitarName">Gitar</th><th>dk</th><th></th></tr></thead>
+        <tbody id="logBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><span>Weekly Review</span></div>
+
+<section id="weekly">
+  <div class="section-head">
+    <p class="eyebrow">Track &middot; HaftalÄ±k DeÄŸerlendirme</p>
+    <h2>Sistem Ã§alÄ±ÅŸÄ±yor mu?</h2>
+    <p>BaÅŸarÄ±lÄ±/baÅŸarÄ±sÄ±z diye bakma. Bu hafta neyin iÅŸe yaramadÄ±ÄŸÄ±na bak, gelecek hafta iÃ§in en fazla 1-2 deÄŸiÅŸiklik seÃ§.</p>
+  </div>
+  <form class="weekly-form" id="weeklyForm">
+    <div class="row1">
+      <label><span class="field-label">Hafta baÅŸlangÄ±cÄ±</span><input type="date" id="weekStart" required></label>
+    </div>
+    <label class="field-block"><span class="field-label">Bu hafta ne gÃ¶rdÃ¼n? (veri: gÃ¶rÃ¼ntÃ¼lenme, ziyaret, sepet, antrenman, dakikaâ€¦)</span>
+      <textarea id="weekObs" placeholder="Ã–r: 3.000 gÃ¶rÃ¼ntÃ¼lenme, 80 site ziyareti, 6 sepete ekleme, 0 satÄ±ÅŸ â†’ sorun Ã¼rÃ¼n sayfasÄ±nda olabilir."></textarea>
+    </label>
+    <div class="row1">
+      <label style="flex:1;"><span class="field-label">DeÄŸiÅŸiklik #1</span><input type="text" id="weekChange1" placeholder="Gelecek hafta deÄŸiÅŸtireceÄŸim tek bÃ¼yÃ¼k ÅŸey"></label>
+      <label style="flex:1;"><span class="field-label">DeÄŸiÅŸiklik #2 (opsiyonel)</span><input type="text" id="weekChange2"></label>
+    </div>
+    <div style="margin-top:14px;"><button type="submit" class="btn btn-primary">HaftayÄ± kaydet</button></div>
+  </form>
+  <ul class="weekly-list" id="weeklyList"></ul>
+</section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-actions">
+      <button class="btn btn-primary" id="exportBtn">JSON olarak indir</button>
+      <span class="btn file-btn">Dosyadan iÃ§e aktar<input type="file" id="importInput" accept="application/json,.json"></span>
+      <button class="btn btn-danger" id="resetBtn">Verileri sÄ±fÄ±rla</button>
+    </div>
+    <div id="statusLine"></div>
+    <p class="closing">"90 gÃ¼nÃ¼n sonunda sadece YORUG, vÃ¼cudun ve gitar seviyen deÄŸiÅŸmez â€” kendine verdiÄŸin sÃ¶zlerin aÄŸÄ±rlÄ±ÄŸÄ± deÄŸiÅŸir." TÃ¼m veriler yalnÄ±zca bu tarayÄ±cÄ±da saklanÄ±r (en fazla 3 kullanÄ±cÄ±, Ã¼stteki profil Ã§ubuÄŸundan eklenir/deÄŸiÅŸtirilir); dÃ¼zenli olarak JSON yedeÄŸi al â€” indirdiÄŸin dosya tÃ¼m kullanÄ±cÄ±larÄ± iÃ§erir.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+var LEGACY_KEY = "tale_90gun_plan_v1";
+var PROFILES_KEY = "tale_90gun_profiles_v1";
+var MAX_PROFILES = 3;
+var START_DATE = new Date(2026,7,11);
+var END_DATE = new Date(2026,10,9);
+
+var ICON_BAG = '<svg viewBox="0 0 48 48"><path d="M14 18 C14 10 34 10 34 18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><rect x="9" y="18" width="30" height="23" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><line x1="9" y1="27" x2="39" y2="27" stroke="currentColor" stroke-width="2"/></svg>';
+var ICON_DUMBBELL = '<svg viewBox="0 0 48 48"><line x1="10" y1="24" x2="38" y2="24" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><rect x="3" y="15" width="9" height="18" rx="2" fill="currentColor"/><rect x="36" y="15" width="9" height="18" rx="2" fill="currentColor"/><rect x="14" y="18" width="4" height="12" rx="1" fill="currentColor"/><rect x="30" y="18" width="4" height="12" rx="1" fill="currentColor"/></svg>';
+var ICON_GUITAR = '<svg viewBox="0 0 48 48"><rect x="20.5" y="3" width="7" height="22" rx="2.5" fill="none" stroke="currentColor" stroke-width="2.5"/><ellipse cx="24" cy="33" rx="15" ry="11" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="24" cy="33" r="3" fill="currentColor"/><line x1="24" y1="3" x2="24" y2="24" stroke="currentColor" stroke-width="1.4" opacity="0.55"/></svg>';
+var ICON_ARROW_DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="18"></line><polyline points="6 12 12 18 18 12"></polyline></svg>';
+
+var FRONTS = [
+  { key:"yorug", name:"YORUG", tag:"Ä°ÅŸ / Marka", accent:"yorug", icon:ICON_BAG,
+    have:"GÃ¼nde ortalama 1 satÄ±ÅŸ Ã¼retebilen bir YORUG.",
+    be:"MarkasÄ±nÄ± sistematik yÃ¶neten bir kurucu / kreatif direktÃ¶r.",
+    doText:"Her hafta iÃ§erik Ã¼retir, satÄ±ÅŸ verilerini inceler, reklam kreatiflerini test eder, Ã¼rÃ¼n sayfasÄ±nÄ± geliÅŸtirir, mÃ¼ÅŸteriyle iletiÅŸim kurar.",
+    nonNeg:"En az bir satÄ±ÅŸ aksiyonu: DM yanÄ±tla, 1 reels Ã§ek ya da retargeting kontrol et.",
+    northStar:"AylÄ±k satÄ±ÅŸ adedi (son 30 gÃ¼n)",
+    d30:"Ä°lk 10 satÄ±ÅŸ tamamlandÄ±, hangi kanaldan geldiÄŸi not edildi.",
+    d60:"HaftalÄ±k iÃ§erik + reklam dÃ¼zeni oturdu, 20. satÄ±ÅŸa ulaÅŸÄ±ldÄ±.",
+    d90:"Son 30 gÃ¼nde en az 30 sipariÅŸ. SatÄ±ÅŸlarÄ±n hangi kanaldan geldiÄŸi net, haftalÄ±k iÃ§erik dÃ¼zeni otomatik iÅŸliyor." },
+  { key:"spor", name:"SPOR", tag:"Fiziksel Disiplin", accent:"spor", icon:ICON_DUMBBELL,
+    have:"Haftada 4 gÃ¼n antrenman yapan, Ã¶lÃ§Ã¼mlerini kaydeden bir vÃ¼cut.",
+    be:"Sporu kimliÄŸinin parÃ§asÄ± haline getirmiÅŸ biri.",
+    doText:"Haftada 4 kez antrenmana gider, formu tempoya feda etmez, Ã¶lÃ§Ã¼mlerini dÃ¼zenli kaydeder.",
+    nonNeg:"10-20 dakikalÄ±k minimum hareket ya da bilinÃ§li planlanmÄ±ÅŸ dinlenme gÃ¼nÃ¼.",
+    northStar:"Ayda tamamlanan antrenman sayÄ±sÄ±",
+    d30:"Haftada 4 antrenman rutini oturdu, ilk Ã¶lÃ§Ã¼m farklarÄ± alÄ±ndÄ±.",
+    d60:"Temel hareketlerde aÄŸÄ±rlÄ±klar arttÄ±, kondisyon gÃ¶zle gÃ¶rÃ¼lÃ¼r iyileÅŸti.",
+    d90:"90 gÃ¼ndÃ¼r sistemi bÄ±rakmamÄ±ÅŸ, haftada 4 gÃ¼n antrenman yapan biriyim." },
+  { key:"gitar", name:"GÄ°TAR", tag:"Uzun Vadeli Beceri", accent:"gitar", icon:ICON_GUITAR,
+    have:"Temel notalarÄ±, akorlarÄ± ve 2-3 riffi Ã§alabilen bir kulak/el.",
+    be:"KÃ¶tÃ¼ gÃ¼nde bile zinciri koruyan bir mÃ¼zisyen.",
+    doText:"Her gÃ¼n en az minimum standardÄ± uygular: 5 dk nota, 5 dk egzersiz, 5 dk riff/ÅŸarkÄ±.",
+    nonNeg:"Minimum 15 dakika: 5 dk nota + 5 dk egzersiz + 5 dk riff.",
+    northStar:"HaftalÄ±k Ã§alÄ±ÅŸma gÃ¼nÃ¼ sayÄ±sÄ±",
+    d30:"Temel notalar ve 3-4 akor rahat basÄ±lÄ±yor.",
+    d60:"Metronomla egzersiz yapÄ±labiliyor, 1 parÃ§anÄ±n riffi Ã§alÄ±nabiliyor.",
+    d90:"Klavyedeki temel notalarÄ± biliyorum, temel akorlarÄ± basabiliyorum, metronomla Ã§alÄ±ÅŸabiliyorum ve 2-3 parÃ§anÄ±n riffini Ã§alabiliyorum." }
+];
+
+function defaultState(){
+  var g = {}, cl = {}, ms = {}, msDone = {};
+  FRONTS.forEach(function(f){
+    g[f.key] = { have:"", be:"", doText:"", nonNeg:"", northStar:f.northStar, customName:"", customTag:"" };
+    cl[f.key] = { dragons: [], installs: [] };
+    ms[f.key] = { d30:"", d60:"", d90:"" };
+    msDone[f.key] = { d30:false, d60:false, d90:false };
+  });
+  g.yorug.targetSales = 30; g.yorug.salesWindow = 30; g.yorug.convRate = 1; g.yorug.trafficSources = "";
+  return {
+    goals: g,
+    baseline: { date:"", kilo:"", bel:"", gogus:"", kol:"", bacak:"", lifts:"", kondisyon:"" },
+    checkpoints: {
+      d30:{ kilo:"", bel:"", gogus:"", kol:"", bacak:"", lifts:"", kondisyon:"" },
+      d60:{ kilo:"", bel:"", gogus:"", kol:"", bacak:"", lifts:"", kondisyon:"" },
+      d90:{ kilo:"", bel:"", gogus:"", kol:"", bacak:"", lifts:"", kondisyon:"" }
+    },
+    checklists: cl,
+    milestones: ms,
+    milestonesDone: msDone,
+    timeAudit: [],
+    logs: [],
+    weekly: []
+  };
+}
+
+function repairState(parsed){
+  var base = defaultState();
+  for(var k in base){ if(!(k in parsed)) parsed[k] = base[k]; }
+  FRONTS.forEach(function(f){
+    if(!parsed.goals[f.key]) parsed.goals[f.key] = base.goals[f.key];
+    if(!parsed.checklists[f.key]) parsed.checklists[f.key] = base.checklists[f.key];
+    if(!parsed.milestones[f.key]) parsed.milestones[f.key] = base.milestones[f.key];
+    if(!parsed.milestonesDone[f.key]) parsed.milestonesDone[f.key] = base.milestonesDone[f.key];
+  });
+  return parsed;
+}
+
+function defaultProfiles(){
+  var id = "p1";
+  var profiles = { list:[{id:id, name:"Ben"}], activeId:id, data:{} };
+  profiles.data[id] = defaultState();
+  return profiles;
+}
+
+function loadProfiles(){
+  try{
+    var raw = localStorage.getItem(PROFILES_KEY);
+    if(raw){
+      var parsed = JSON.parse(raw);
+      if(!parsed.list || !parsed.list.length) throw new Error("boÅŸ profil listesi");
+      parsed.list = parsed.list.slice(0, MAX_PROFILES);
+      parsed.data = parsed.data || {};
+      parsed.list.forEach(function(p){
+        parsed.data[p.id] = repairState(parsed.data[p.id] || defaultState());
+      });
+      if(!parsed.activeId || !parsed.data[parsed.activeId]) parsed.activeId = parsed.list[0].id;
+      return parsed;
+    }
+    var profiles = defaultProfiles();
+    var legacyRaw = localStorage.getItem(LEGACY_KEY);
+    if(legacyRaw){
+      try{ profiles.data[profiles.list[0].id] = repairState(JSON.parse(legacyRaw)); }catch(e){ console.error(e); }
+    }
+    return profiles;
+  }catch(e){ console.error(e); return defaultProfiles(); }
+}
+
+var profiles = loadProfiles();
+var state = profiles.data[profiles.activeId];
+function saveProfiles(){ try{ localStorage.setItem(PROFILES_KEY, JSON.stringify(profiles)); }catch(e){ console.error(e); } }
+function saveState(){ profiles.data[profiles.activeId] = state; saveProfiles(); }
+function currentProfileName(){ var p = profiles.list.find(function(x){ return x.id===profiles.activeId; }); return p ? p.name : ""; }
+
+/* ---------- date helpers ---------- */
+function isoDate(d){ var y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,"0"), day=String(d.getDate()).padStart(2,"0"); return y+"-"+m+"-"+day; }
+function parseISO(s){ var p=s.split("-"); return new Date(parseInt(p[0],10), parseInt(p[1],10)-1, parseInt(p[2],10)); }
+function addDays(d,n){ var r=new Date(d); r.setDate(r.getDate()+n); return r; }
+function daysBetween(a,b){ return Math.round((b-a)/86400000); }
+function clampDate(d,lo,hi){ if(d<lo) return lo; if(d>hi) return hi; return d; }
+function fmtTR(d){
+  var months=["Oca","Åub","Mar","Nis","May","Haz","Tem","AÄŸu","Eyl","Eki","Kas","Ara"];
+  return d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
+}
+function todayClamped(){ return clampDate(new Date(new Date().setHours(0,0,0,0)), START_DATE, END_DATE); }
+
+/* ---------- generic field wiring ---------- */
+document.addEventListener("input", handleFieldChange);
+document.addEventListener("change", handleFieldChange);
+function handleFieldChange(e){
+  var t = e.target;
+  if(!t.dataset || !t.dataset.scope) return;
+  var scope = t.dataset.scope;
+  if(scope === "goal"){
+    state.goals[t.dataset.front][t.dataset.field] = t.value;
+  } else if(scope === "baseline"){
+    state.baseline[t.dataset.field] = t.value;
+    renderDelta();
+  } else if(scope === "checkpoint"){
+    state.checkpoints[t.dataset.checkpoint][t.dataset.field] = t.value;
+    renderDelta();
+  } else if(scope === "milestone"){
+    if(t.dataset.field === "done"){
+      state.milestonesDone[t.dataset.front][t.dataset.milestone] = t.checked;
+    } else {
+      state.milestones[t.dataset.front][t.dataset.milestone] = t.value;
+    }
+  } else if(scope === "calc"){
+    var v = parseFloat(t.value); if(isNaN(v) || v<0) v=0;
+    state.goals.yorug[t.dataset.field] = v;
+    renderCalc();
+  }
+  saveState();
+}
+
+/* ---------- profiles ---------- */
+var profileAddMode = false, profileRenameMode = false;
+var removeArmedId = null, removeArmedTimer = null;
+function initials(name){
+  var parts = (name||"").trim().split(/\s+/).filter(Boolean);
+  if(parts.length===0) return "?";
+  if(parts.length===1) return parts[0].slice(0,2).toUpperCase();
+  return (parts[0][0]+parts[1][0]).toUpperCase();
+}
+function switchProfile(id){
+  if(!profiles.data[id] || id===profiles.activeId) return;
+  profiles.activeId = id;
+  state = profiles.data[id];
+  saveProfiles();
+  renderAll();
+}
+function addProfile(name){
+  if(profiles.list.length >= MAX_PROFILES){ showStatus("En fazla "+MAX_PROFILES+" kullanÄ±cÄ± eklenebilir.", true); return; }
+  var id = "p"+Date.now();
+  profiles.list.push({ id:id, name:name || ("KullanÄ±cÄ± "+(profiles.list.length+1)) });
+  profiles.data[id] = defaultState();
+  profiles.activeId = id;
+  state = profiles.data[id];
+  saveProfiles();
+  renderAll();
+  showStatus("KullanÄ±cÄ± eklendi.");
+}
+function removeProfile(id){
+  if(profiles.list.length <= 1) return;
+  if(removeArmedId !== id){
+    removeArmedId = id;
+    clearTimeout(removeArmedTimer);
+    removeArmedTimer = setTimeout(function(){ removeArmedId=null; renderProfileBar(); }, 4000);
+    renderProfileBar();
+    return;
+  }
+  clearTimeout(removeArmedTimer);
+  removeArmedId = null;
+  var idx = profiles.list.findIndex(function(p){ return p.id===id; });
+  if(idx<0) return;
+  var wasActive = profiles.activeId===id;
+  profiles.list.splice(idx,1);
+  delete profiles.data[id];
+  if(wasActive){ profiles.activeId = profiles.list[0].id; state = profiles.data[profiles.activeId]; }
+  saveProfiles();
+  renderAll();
+  showStatus("KullanÄ±cÄ± silindi.");
+}
+function renderProfileBar(){
+  var bar = document.getElementById("profileBar");
+  var html = profiles.list.map(function(p){
+    var active = p.id === profiles.activeId;
+    if(active && profileRenameMode){
+      return '<form class="profile-rename-form" id="profileRenameForm">' +
+        '<input type="text" id="profileRenameInput" value="'+esc(p.name)+'" maxlength="24">' +
+        '<button type="submit" class="btn" style="padding:5px 10px;">Kaydet</button>' +
+        '<button type="button" class="btn btn-ghost" id="profileRenameCancel" style="padding:5px 10px;">VazgeÃ§</button>' +
+      '</form>';
+    }
+    var removeArmed = removeArmedId === p.id;
+    return '<span class="profile-pill'+(active?' active':'')+'" data-profile-switch="'+p.id+'" tabindex="0" role="button" aria-pressed="'+active+'">' +
+      '<span class="avatar">'+esc(initials(p.name))+'</span>' +
+      '<span>'+esc(p.name)+'</span>' +
+      (active ? '<button type="button" class="pill-btn" data-profile-rename aria-label="AdÄ± deÄŸiÅŸtir">âœ</button>' : '') +
+      (profiles.list.length>1 ? '<button type="button" class="pill-btn'+(removeArmed?' danger-armed':'')+'" data-profile-remove="'+p.id+'" aria-label="KullanÄ±cÄ±yÄ± sil">'+(removeArmed?'emin misin?':'âœ•')+'</button>' : '') +
+    '</span>';
+  }).join("");
+
+  if(profiles.list.length < MAX_PROFILES){
+    if(profileAddMode){
+      html += '<form class="profile-add-form" id="profileAddForm">' +
+        '<input type="text" id="profileAddInput" placeholder="Ä°simâ€¦" maxlength="24">' +
+        '<button type="submit" class="btn btn-primary" style="padding:5px 10px;">Ekle</button>' +
+        '<button type="button" class="btn btn-ghost" id="profileAddCancel" style="padding:5px 10px;">VazgeÃ§</button>' +
+      '</form>';
+    } else {
+      html += '<button type="button" class="btn" id="profileAddBtn" style="padding:5px 12px;">+ KullanÄ±cÄ± ekle</button>';
+    }
+  }
+  bar.innerHTML = html;
+  wireProfileBar();
+}
+function wireProfileBar(){
+  document.querySelectorAll("[data-profile-switch]").forEach(function(el){
+    el.addEventListener("click", function(){ profileRenameMode=false; switchProfile(el.dataset.profileSwitch); });
+    el.addEventListener("keydown", function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); el.click(); } });
+  });
+  document.querySelectorAll("[data-profile-remove]").forEach(function(btn){
+    btn.addEventListener("click", function(e){ e.stopPropagation(); removeProfile(btn.dataset.profileRemove); });
+  });
+  var renameBtn = document.querySelector("[data-profile-rename]");
+  if(renameBtn){
+    renameBtn.addEventListener("click", function(e){
+      e.stopPropagation();
+      profileRenameMode = true;
+      renderProfileBar();
+      var inp = document.getElementById("profileRenameInput");
+      if(inp){ inp.focus(); inp.select(); }
+    });
+  }
+  var renameForm = document.getElementById("profileRenameForm");
+  if(renameForm){
+    renameForm.addEventListener("click", function(e){ e.stopPropagation(); });
+    renameForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      var val = document.getElementById("profileRenameInput").value.trim();
+      if(val){
+        var p = profiles.list.find(function(x){ return x.id===profiles.activeId; });
+        p.name = val;
+        saveProfiles();
+      }
+      profileRenameMode = false;
+      renderProfileBar();
+    });
+    document.getElementById("profileRenameCancel").addEventListener("click", function(e){ e.stopPropagation(); profileRenameMode=false; renderProfileBar(); });
+  }
+  var addBtn = document.getElementById("profileAddBtn");
+  if(addBtn){
+    addBtn.addEventListener("click", function(){
+      profileAddMode = true;
+      renderProfileBar();
+      var inp = document.getElementById("profileAddInput");
+      if(inp) inp.focus();
+    });
+  }
+  var addForm = document.getElementById("profileAddForm");
+  if(addForm){
+    addForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      var val = document.getElementById("profileAddInput").value.trim();
+      profileAddMode = false;
+      addProfile(val);
+    });
+    document.getElementById("profileAddCancel").addEventListener("click", function(){ profileAddMode=false; renderProfileBar(); });
+  }
+}
+
+/* ---------- hero ---------- */
+function renderHero(){
+  var today = todayClamped();
+  var total = daysBetween(START_DATE, END_DATE) + 1;
+  var idx = daysBetween(START_DATE, today) + 1;
+  document.getElementById("heroDay").textContent = "GÃœN " + idx;
+  document.getElementById("heroOf").textContent = "/ " + total + " gÃ¼n";
+  var pct = Math.round((idx/total)*100);
+  document.getElementById("heroBarFill").style.width = pct + "%";
+  document.getElementById("heroStartLabel").textContent = fmtTR(START_DATE);
+  document.getElementById("heroPercentLabel").textContent = "%" + pct + " tamamlandÄ±";
+  document.getElementById("heroEndLabel").textContent = fmtTR(END_DATE);
+
+  var elapsedDays = idx;
+  var activeDays = 0, allThree = 0;
+  for(var i=0;i<elapsedDays;i++){
+    var d = addDays(START_DATE, i);
+    var log = findLog(isoDate(d));
+    if(log && (log.yorugDone || log.sporDone || log.gitarDone)) activeDays++;
+    if(log && log.yorugDone && log.sporDone && log.gitarDone) allThree++;
+  }
+  document.getElementById("statConsistency").textContent = elapsedDays ? Math.round((activeDays/elapsedDays)*100) + "%" : "â€”";
+  document.getElementById("statLoggedDays").textContent = state.logs.length;
+  document.getElementById("statAll3").textContent = allThree;
+}
+
+/* ---------- front cards ---------- */
+var frontEditKey = null;
+function frontLabel(f){ var g = state.goals[f.key]; return (g && g.customName) ? g.customName : f.name; }
+function frontTagLabel(f){ var g = state.goals[f.key]; return (g && g.customTag) ? g.customTag : f.tag; }
+function renderFrontCards(){
+  var grid = document.getElementById("frontsGrid");
+  grid.innerHTML = FRONTS.map(function(f){
+    var g = state.goals[f.key];
+    var name = frontLabel(f), tag = frontTagLabel(f);
+    var headerBody;
+    if(frontEditKey === f.key){
+      headerBody =
+        '<form class="front-edit-form" data-front-edit-form="'+f.key+'">' +
+          '<input type="text" class="front-edit-name" value="'+esc(name)+'" maxlength="28" placeholder="BaÅŸlÄ±k (Ã¶r. YORUG)">' +
+          '<input type="text" class="front-edit-tag" value="'+esc(tag)+'" maxlength="34" placeholder="Alt baÅŸlÄ±k (Ã¶r. Ä°ÅŸ / Marka)">' +
+          '<div class="form-actions"><button type="submit" class="btn" style="padding:5px 10px;">Kaydet</button>' +
+          '<button type="button" class="btn btn-ghost" data-front-edit-cancel="'+f.key+'" style="padding:5px 10px;">VazgeÃ§</button></div>' +
+        '</form>';
+    } else {
+      headerBody =
+        '<div class="front-titles"><h3>'+esc(name)+'</h3><p class="front-tag">'+esc(tag)+'</p></div>' +
+        '<button type="button" class="icon-btn" data-front-edit="'+f.key+'" aria-label="BaÅŸlÄ±ÄŸÄ± dÃ¼zenle">âœ</button>';
+    }
+    return '' +
+    '<article class="front-card" style="--accent:var(--accent-'+f.accent+')">' +
+      '<header class="front-head">' +
+        '<span class="front-icon">'+f.icon+'</span>' +
+        headerBody +
+      '</header>' +
+      '<div class="hbd">' +
+        '<div class="hbd-row"><span class="hbd-label">HAVE<em>neye sahip olmak istiyorum</em></span>' +
+          '<textarea data-scope="goal" data-front="'+f.key+'" data-field="have" placeholder="'+f.have+'">'+esc(g.have)+'</textarea></div>' +
+        '<div class="hbd-arrow">'+ICON_ARROW_DOWN+'</div>' +
+        '<div class="hbd-row"><span class="hbd-label">BE<em>buna sahip olan kiÅŸi nasÄ±l biri</em></span>' +
+          '<textarea data-scope="goal" data-front="'+f.key+'" data-field="be" placeholder="'+f.be+'">'+esc(g.be)+'</textarea></div>' +
+        '<div class="hbd-arrow">'+ICON_ARROW_DOWN+'</div>' +
+        '<div class="hbd-row"><span class="hbd-label">DO<em>o kiÅŸi dÃ¼zenli olarak ne yapar</em></span>' +
+          '<textarea data-scope="goal" data-front="'+f.key+'" data-field="doText" placeholder="'+f.doText+'">'+esc(g.doText)+'</textarea></div>' +
+      '</div>' +
+      '<label class="field-block"><span class="field-label">â›” PazarlÄ±ksÄ±z minimum (kÃ¶tÃ¼ gÃ¼n standardÄ±)</span>' +
+        '<textarea data-scope="goal" data-front="'+f.key+'" data-field="nonNeg" placeholder="'+f.nonNeg+'">'+esc(g.nonNeg)+'</textarea></label>' +
+      '<label class="field-block"><span class="field-label">ğŸ¯ North Star metrik</span>' +
+        '<input type="text" data-scope="goal" data-front="'+f.key+'" data-field="northStar" value="'+esc(g.northStar)+'"></label>' +
+    '</article>';
+  }).join("");
+  wireFrontEdit();
+}
+function wireFrontEdit(){
+  document.querySelectorAll("[data-front-edit]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      frontEditKey = btn.dataset.frontEdit;
+      renderFrontCards();
+      var inp = document.querySelector(".front-edit-name");
+      if(inp){ inp.focus(); inp.select(); }
+    });
+  });
+  document.querySelectorAll("[data-front-edit-cancel]").forEach(function(btn){
+    btn.addEventListener("click", function(){ frontEditKey = null; renderFrontCards(); });
+  });
+  document.querySelectorAll("[data-front-edit-form]").forEach(function(form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var key = form.dataset.frontEditForm;
+      var nameVal = form.querySelector(".front-edit-name").value.trim();
+      var tagVal = form.querySelector(".front-edit-tag").value.trim();
+      state.goals[key].customName = nameVal;
+      state.goals[key].customTag = tagVal;
+      saveState();
+      frontEditKey = null;
+      renderAll();
+    });
+  });
+}
+function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+/* ---------- section labels (front-name propagation) ---------- */
+function renderSectionLabels(){
+  var elCalc = document.getElementById("calcEyebrow");
+  if(elCalc) elCalc.textContent = "Reverse Engineer Â· " + frontLabel(FRONTS[0]);
+  var elBase = document.getElementById("baselineEyebrow");
+  if(elBase) elBase.textContent = "Envision Â· " + frontLabel(FRONTS[1]);
+  var elDiv = document.getElementById("dividerSporLabel");
+  if(elDiv) elDiv.textContent = frontLabel(FRONTS[1]) + " Â· Ã–lÃ§Ã¼mler";
+  var thY = document.getElementById("thYorugName"); if(thY) thY.textContent = frontLabel(FRONTS[0]);
+  var thS = document.getElementById("thSporName"); if(thS) thS.textContent = frontLabel(FRONTS[1]);
+  var thG = document.getElementById("thGitarName"); if(thG) thG.textContent = frontLabel(FRONTS[2]);
+}
+
+/* ---------- calculator ---------- */
+function setValIfNotFocused(el, val){ if(document.activeElement !== el) el.value = val; }
+function renderCalc(){
+  var g = state.goals.yorug;
+  setValIfNotFocused(document.getElementById("calcTargetSales"), g.targetSales);
+  setValIfNotFocused(document.getElementById("calcWindow"), g.salesWindow);
+  setValIfNotFocused(document.getElementById("calcConv"), g.convRate);
+  var conv = g.convRate>0 ? g.convRate : 1;
+  var reqVisitors = Math.round(g.targetSales / (conv/100));
+  var daily = Math.round(reqVisitors / Math.max(1,g.salesWindow));
+  var perDay = (g.targetSales / Math.max(1,g.salesWindow)).toFixed(2);
+  document.getElementById("calcOutVisitors").textContent = reqVisitors.toLocaleString("tr-TR");
+  document.getElementById("calcOutDaily").textContent = daily.toLocaleString("tr-TR");
+  document.getElementById("calcOutPerDay").textContent = perDay;
+
+  var rows = [
+    { label:"ZiyaretÃ§i", val:reqVisitors, w:100 },
+    { label:"SatÄ±ÅŸ", val:g.targetSales, w: Math.max(4, (g.targetSales/reqVisitors)*100 || 4) }
+  ];
+  document.getElementById("calcFunnel").innerHTML = rows.map(function(r){
+    return '<div class="funnel-row"><span class="funnel-label">'+r.label+'</span>' +
+      '<div class="funnel-bar" style="width:'+r.w.toFixed(1)+'%"></div>' +
+      '<span class="funnel-val mono">'+r.val.toLocaleString("tr-TR")+'</span></div>';
+  }).join("");
+}
+
+/* ---------- checkpoint tabs & delta ---------- */
+function initCheckpointTabs(){
+  var tabs = document.querySelectorAll(".cp-tab");
+  tabs.forEach(function(tab){
+    tab.addEventListener("click", function(){
+      tabs.forEach(function(t){ t.classList.remove("active"); });
+      tab.classList.add("active");
+      document.querySelectorAll(".cp-panel").forEach(function(p){ p.classList.remove("active"); });
+      document.querySelector('.cp-panel[data-cp-panel="'+tab.dataset.cp+'"]').classList.add("active");
+    });
+  });
+}
+function fillBaselineForm(){
+  document.querySelectorAll('[data-scope="baseline"]').forEach(function(inp){
+    inp.value = state.baseline[inp.dataset.field] || "";
+  });
+  ["d30","d60","d90"].forEach(function(cp){
+    document.querySelectorAll('[data-scope="checkpoint"][data-checkpoint="'+cp+'"]').forEach(function(inp){
+      inp.value = state.checkpoints[cp][inp.dataset.field] || "";
+    });
+  });
+}
+function renderDelta(){
+  var b = state.baseline;
+  var out = document.getElementById("cpDelta");
+  var chips = [];
+  ["d30","d60","d90"].forEach(function(cp){
+    var c = state.checkpoints[cp];
+    ["kilo","bel","gogus","kol","bacak"].forEach(function(field){
+      var bv = parseFloat(b[field]), cv = parseFloat(c[field]);
+      if(!isNaN(bv) && !isNaN(cv)){
+        var diff = (cv-bv);
+        var sign = diff>0 ? "+" : "";
+        chips.push('<span class="delta-chip">'+cp.toUpperCase()+" "+field+": "+sign+diff.toFixed(1)+'</span>');
+      }
+    });
+  });
+  out.innerHTML = chips.join("") || '<span style="color:var(--ink-muted);font-size:0.82rem;">KarÅŸÄ±laÅŸtÄ±rma iÃ§in baÅŸlangÄ±Ã§ ve kontrol noktasÄ± Ã¶lÃ§Ã¼mlerini gir.</span>';
+}
+
+/* ---------- checklists (dragons / installs) ---------- */
+function renderChecklists(){
+  var grid = document.getElementById("checklistGrid");
+  grid.innerHTML = FRONTS.map(function(f){
+    return '<div class="checklist-col" style="--accent:var(--accent-'+f.accent+')">' +
+      '<h3 style="font-size:1rem;">'+esc(frontLabel(f))+'</h3>' +
+      renderChecklistSub(f.key,"dragons","ğŸ‰ Ejderhalar (uzak dur)") +
+      renderChecklistSub(f.key,"installs","ğŸ”§ Kurulumlar (kolaylaÅŸtÄ±r)") +
+    '</div>';
+  }).join("");
+  wireChecklistForms();
+}
+function renderChecklistSub(front,type,title){
+  var items = state.checklists[front][type];
+  var lis = items.map(function(item,i){
+    return '<li class="cl-item'+(item.done?' done':'')+'">' +
+      '<input type="checkbox" '+(item.done?'checked':'')+' data-cl-toggle="'+front+'|'+type+'|'+i+'">' +
+      '<span class="txt">'+esc(item.text)+'</span>' +
+      '<button type="button" data-cl-remove="'+front+'|'+type+'|'+i+'" aria-label="Sil">âœ•</button>' +
+    '</li>';
+  }).join("");
+  return '<div class="checklist-sub"><h4>'+title+'</h4>' +
+    '<ul class="cl-list">'+(lis||'')+'</ul>' +
+    '<div class="cl-add"><input type="text" placeholder="Yeni ekleâ€¦" data-cl-input="'+front+'|'+type+'">' +
+    '<button type="button" class="btn" data-cl-add="'+front+'|'+type+'">+</button></div></div>';
+}
+function wireChecklistForms(){
+  document.querySelectorAll("[data-cl-toggle]").forEach(function(cb){
+    cb.addEventListener("change", function(){
+      var parts = cb.dataset.clToggle.split("|");
+      state.checklists[parts[0]][parts[1]][parts[2]].done = cb.checked;
+      saveState(); renderChecklists();
+    });
+  });
+  document.querySelectorAll("[data-cl-remove]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var parts = btn.dataset.clRemove.split("|");
+      state.checklists[parts[0]][parts[1]].splice(parseInt(parts[2],10),1);
+      saveState(); renderChecklists();
+    });
+  });
+  document.querySelectorAll("[data-cl-add]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var parts = btn.dataset.clAdd.split("|");
+      var input = document.querySelector('[data-cl-input="'+btn.dataset.clAdd+'"]');
+      var val = input.value.trim();
+      if(!val) return;
+      state.checklists[parts[0]][parts[1]].push({text:val, done:false});
+      input.value = "";
+      saveState(); renderChecklists();
+    });
+  });
+  document.querySelectorAll("[data-cl-input]").forEach(function(input){
+    input.addEventListener("keydown", function(e){
+      if(e.key === "Enter"){
+        e.preventDefault();
+        document.querySelector('[data-cl-add="'+input.dataset.clInput+'"]').click();
+      }
+    });
+  });
+}
+
+/* ---------- time audit ---------- */
+function renderTimeAudit(){
+  var body = document.getElementById("auditBody");
+  body.innerHTML = state.timeAudit.map(function(row,i){
+    var cls = row.tag === "green" ? "green" : row.tag === "red" ? "red" : "neutral";
+    var label = row.tag === "green" ? "ğŸŸ¢" : row.tag === "red" ? "ğŸ”´" : "âšª";
+    return '<tr><td>'+esc(row.activity)+'</td><td class="num">'+row.minutes+'</td>' +
+      '<td><button type="button" class="tag-pill '+cls+'" data-audit-tag="'+i+'">'+label+'</button></td>' +
+      '<td><button type="button" class="btn-ghost btn" data-audit-remove="'+i+'" aria-label="Sil">âœ•</button></td></tr>';
+  }).join("") || '<tr><td colspan="4" style="color:var(--ink-muted);">HenÃ¼z kayÄ±t yok.</td></tr>';
+
+  var green=0, red=0;
+  state.timeAudit.forEach(function(r){ if(r.tag==="green") green+=r.minutes; if(r.tag==="red") red+=r.minutes; });
+  document.getElementById("auditGreenTotal").textContent = green;
+  document.getElementById("auditRedTotal").textContent = red;
+
+  document.querySelectorAll("[data-audit-tag]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var i = parseInt(btn.dataset.auditTag,10);
+      var order = ["neutral","green","red"];
+      var cur = state.timeAudit[i].tag || "neutral";
+      var next = order[(order.indexOf(cur)+1) % order.length];
+      state.timeAudit[i].tag = next;
+      saveState(); renderTimeAudit();
+    });
+  });
+  document.querySelectorAll("[data-audit-remove]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      state.timeAudit.splice(parseInt(btn.dataset.auditRemove,10),1);
+      saveState(); renderTimeAudit();
+    });
+  });
+}
+document.getElementById("auditAdd").addEventListener("click", function(){
+  var act = document.getElementById("auditActivity");
+  var min = document.getElementById("auditMinutes");
+  var a = act.value.trim(), m = parseInt(min.value,10);
+  if(!a || !m) return;
+  state.timeAudit.unshift({ activity:a, minutes:m, tag:"neutral" });
+  act.value=""; min.value="";
+  saveState(); renderTimeAudit();
+});
+
+/* ---------- milestones ---------- */
+function renderMilestones(){
+  var grid = document.getElementById("milestoneGrid");
+  grid.innerHTML = FRONTS.map(function(f){
+    var ms = state.milestones[f.key], done = state.milestonesDone[f.key];
+    var dates = { d30: addDays(START_DATE,29), d60: addDays(START_DATE,59), d90: END_DATE };
+    var blocks = ["d30","d60","d90"].map(function(cp){
+      return '<div class="ms-block">' +
+        '<div class="ms-head"><span class="ms-day">'+cp.toUpperCase()+'</span><span class="ms-date mono">'+fmtTR(dates[cp])+'</span></div>' +
+        '<textarea data-scope="milestone" data-front="'+f.key+'" data-milestone="'+cp+'" data-field="text" placeholder="'+f[cp]+'">'+esc(ms[cp])+'</textarea>' +
+        '<label class="ms-check"><input type="checkbox" data-scope="milestone" data-front="'+f.key+'" data-milestone="'+cp+'" data-field="done" '+(done[cp]?'checked':'')+'> ulaÅŸÄ±ldÄ±</label>' +
+      '</div>';
+    }).join("");
+    return '<div class="milestone-col" style="--accent:var(--accent-'+f.accent+')"><h3 style="font-size:1rem;">'+esc(frontLabel(f))+'</h3>'+blocks+'</div>';
+  }).join("");
+}
+
+/* ---------- scorecard ---------- */
+function findLog(dateStr){
+  for(var i=0;i<state.logs.length;i++){ if(state.logs[i].date===dateStr) return state.logs[i]; }
+  return null;
+}
+function renderScoreForm(){
+  document.getElementById("scoreDate").value = isoDate(todayClamped());
+  document.getElementById("scoreDate").min = isoDate(START_DATE);
+  document.getElementById("scoreDate").max = isoDate(END_DATE);
+  var groups = document.getElementById("scoreGroups");
+  groups.innerHTML = FRONTS.map(function(f){
+    if(f.key==="yorug"){
+      return '<div class="score-group" style="--accent:var(--accent-yorug)"><h4>'+esc(frontLabel(f))+'</h4>' +
+        '<label class="chk"><input type="checkbox" id="in_yorugDone"> BugÃ¼n bir satÄ±ÅŸ aksiyonu aldÄ±m</label>' +
+        '<div class="mini-fields"><label>SatÄ±ÅŸ adedi<input type="number" min="0" id="in_satis" value="0"></label>' +
+        '<label>ZiyaretÃ§i<input type="number" min="0" id="in_ziyaretci" value="0"></label></div></div>';
+    }
+    if(f.key==="spor"){
+      return '<div class="score-group" style="--accent:var(--accent-spor)"><h4>'+esc(frontLabel(f))+'</h4>' +
+        '<label class="chk"><input type="checkbox" id="in_sporDone"> BugÃ¼n hareket ettim / minimumu yaptÄ±m</label>' +
+        '<div class="mini-fields"><label>Dakika<input type="number" min="0" id="in_sporMin" value="0"></label></div></div>';
+    }
+    return '<div class="score-group" style="--accent:var(--accent-gitar)"><h4>'+esc(frontLabel(f))+'</h4>' +
+      '<label class="chk"><input type="checkbox" id="in_gitarDone"> BugÃ¼n Ã§aldÄ±m (min. 15 dk standardÄ± dahil)</label>' +
+      '<div class="mini-fields"><label>Dakika<input type="number" min="0" id="in_gitarMin" value="0"></label></div></div>';
+  }).join("");
+
+  var existing = findLog(document.getElementById("scoreDate").value);
+  document.getElementById("scoreFormHint").textContent = existing ? "Bu tarih iÃ§in kayÄ±t var â€” kaydet, Ã¼zerine yazÄ±lÄ±r." : "";
+}
+document.getElementById("scoreDate").addEventListener("change", function(){
+  var ex = findLog(this.value);
+  document.getElementById("scoreFormHint").textContent = ex ? "Bu tarih iÃ§in kayÄ±t var â€” kaydet, Ã¼zerine yazÄ±lÄ±r." : "";
+  if(ex) fillScoreFormFrom(ex);
+});
+function fillScoreFormFrom(log){
+  document.getElementById("in_yorugDone").checked = !!log.yorugDone;
+  document.getElementById("in_satis").value = log.satis||0;
+  document.getElementById("in_ziyaretci").value = log.ziyaretci||0;
+  document.getElementById("in_sporDone").checked = !!log.sporDone;
+  document.getElementById("in_sporMin").value = log.sporMin||0;
+  document.getElementById("in_gitarDone").checked = !!log.gitarDone;
+  document.getElementById("in_gitarMin").value = log.gitarMin||0;
+}
+document.getElementById("scoreForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var date = document.getElementById("scoreDate").value;
+  var entry = {
+    date: date,
+    yorugDone: document.getElementById("in_yorugDone").checked,
+    satis: parseInt(document.getElementById("in_satis").value,10) || 0,
+    ziyaretci: parseInt(document.getElementById("in_ziyaretci").value,10) || 0,
+    sporDone: document.getElementById("in_sporDone").checked,
+    sporMin: parseInt(document.getElementById("in_sporMin").value,10) || 0,
+    gitarDone: document.getElementById("in_gitarDone").checked,
+    gitarMin: parseInt(document.getElementById("in_gitarMin").value,10) || 0
+  };
+  var idx = state.logs.findIndex(function(l){ return l.date===date; });
+  if(idx>=0) state.logs[idx]=entry; else state.logs.push(entry);
+  state.logs.sort(function(a,b){ return a.date<b.date?-1:1; });
+  saveState();
+  showStatus("GÃ¼n kaydedildi: "+date);
+  renderAll();
+});
+
+function currentStreak(front){
+  var today = todayClamped();
+  var streak = 0;
+  var d = today;
+  while(d >= START_DATE){
+    var log = findLog(isoDate(d));
+    var done = log ? !!log[front+"Done"] : false;
+    if(done){ streak++; d = addDays(d,-1); } else break;
+  }
+  return streak;
+}
+function missedTwice(front){
+  var today = todayClamped();
+  var y1 = addDays(today,-1);
+  if(y1 < START_DATE) return false;
+  var l0 = findLog(isoDate(today)), l1 = findLog(isoDate(y1));
+  var d0 = l0 ? !!l0[front+"Done"] : false;
+  var d1 = l1 ? !!l1[front+"Done"] : false;
+  return !d0 && !d1;
+}
+function renderStreaks(){
+  var row = document.getElementById("streakRow");
+  var today = todayClamped();
+  var monthAgo = addDays(today,-29);
+  var weekAgo = addDays(today,-6);
+  var salesSum=0, workouts=0, gitarDays=0;
+  state.logs.forEach(function(l){
+    var d = parseISO(l.date);
+    if(d>=monthAgo && d<=today && l.yorugDone) salesSum += (l.satis||0);
+    if(d>=monthAgo && d<=today && l.sporDone) workouts++;
+    if(d>=weekAgo && d<=today && l.gitarDone) gitarDays++;
+  });
+  var nsVals = { yorug: salesSum, spor: workouts, gitar: gitarDays };
+  row.innerHTML = FRONTS.map(function(f){
+    var s = currentStreak(f.key);
+    var warn = missedTwice(f.key);
+    return '<div class="streak-tile" style="--accent:var(--accent-'+f.accent+')">' +
+      '<div class="streak-name">'+esc(frontLabel(f))+'</div>' +
+      '<div class="streak-num"><span class="flame">ğŸ”¥</span> '+s+' gÃ¼n</div>' +
+      '<div class="ns">'+esc(state.goals[f.key].northStar)+': <b>'+nsVals[f.key]+'</b></div>' +
+      (warn ? '<div class="badge critical" style="margin-top:8px;">âš  Ä°ki gÃ¼n Ã¼st Ã¼ste kaÃ§Ä±rdÄ±n</div>' : '') +
+    '</div>';
+  }).join("");
+}
+function renderHeatmap(){
+  var wrap = document.getElementById("heatmapLines");
+  var today = todayClamped();
+  var start = addDays(today,-29);
+  if(start < START_DATE) start = START_DATE;
+  var days = [];
+  for(var d=start; d<=today; d=addDays(d,1)) days.push(new Date(d));
+  wrap.innerHTML = FRONTS.map(function(f){
+    var cells = days.map(function(day){
+      var log = findLog(isoDate(day));
+      var title = fmtTR(day);
+      var style = "";
+      if(log){
+        var done = !!log[f.key+"Done"];
+        if(done){ style = "background:var(--accent-"+f.accent+");border-color:var(--accent-"+f.accent+");"; title += " â€” yapÄ±ldÄ±"; }
+        else { style = "background:transparent;border:1.5px solid var(--accent-"+f.accent+");opacity:.55;"; title += " â€” kaÃ§Ä±rÄ±ldÄ±"; }
+      } else { title += " â€” kayÄ±t yok"; }
+      return '<span class="heatmap-cell" style="'+style+'" title="'+title+'"></span>';
+    }).join("");
+    return '<div class="heatmap-line"><span class="heatmap-name">'+esc(frontLabel(f))+'</span><span class="heatmap-cells">'+cells+'</span></div>';
+  }).join("");
+}
+function buildSparkline(entries, valueKey, accentVar){
+  var w=280, h=64, gap=3;
+  var n = entries.length;
+  if(n===0) return '<svg viewBox="0 0 '+w+' '+h+'"><text x="8" y="34" fill="var(--ink-muted)" font-size="11">HenÃ¼z veri yok.</text></svg>';
+  var vals = entries.map(function(e){ return e[valueKey]||0; });
+  var max = Math.max(1, Math.max.apply(null, vals));
+  var barW = Math.max(2,(w-gap*(n-1))/n);
+  var rects = entries.map(function(e,i){
+    var v = e[valueKey]||0;
+    var bh = Math.max(2, (v/max) * (h-18));
+    var x = i*(barW+gap);
+    var y = (h-16) - bh;
+    return '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+barW.toFixed(1)+'" height="'+bh.toFixed(1)+'" rx="2.5" fill="'+accentVar+'"><title>'+e.date+': '+v+'</title></rect>';
+  }).join("");
+  var last = entries[n-1];
+  return '<svg viewBox="0 0 '+w+' '+h+'">' +
+    '<line x1="0" y1="'+(h-16)+'" x2="'+w+'" y2="'+(h-16)+'" stroke="var(--border)" stroke-width="1"></line>' +
+    rects +
+    '<text x="'+w+'" y="'+(h-2)+'" text-anchor="end" font-size="10" fill="var(--ink-muted)">son: '+(last[valueKey]||0)+'</text>' +
+  '</svg>';
+}
+function renderSparklines(){
+  var block = document.getElementById("sparkBlock");
+  var last14 = state.logs.slice(-14);
+  block.innerHTML =
+    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[0]))+' Â· gÃ¼nlÃ¼k satÄ±ÅŸ (son 14 kayÄ±t)</h4>'+buildSparkline(last14,"satis","var(--accent-yorug)")+'</div>' +
+    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[1]))+' Â· dakika (son 14 kayÄ±t)</h4>'+buildSparkline(last14,"sporMin","var(--accent-spor)")+'</div>' +
+    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[2]))+' Â· dakika (son 14 kayÄ±t)</h4>'+buildSparkline(last14,"gitarMin","var(--accent-gitar)")+'</div>';
+}
+function renderLogTable(){
+  var body = document.getElementById("logBody");
+  var rows = state.logs.slice().sort(function(a,b){ return a.date<b.date?1:-1; });
+  body.innerHTML = rows.map(function(l){
+    return '<tr><td class="mono">'+l.date+'</td>' +
+      '<td>'+(l.yorugDone?'âœ…':'â€”')+'</td><td class="num">'+l.satis+'</td><td class="num">'+l.ziyaretci+'</td>' +
+      '<td>'+(l.sporDone?'âœ…':'â€”')+'</td><td class="num">'+l.sporMin+'</td>' +
+      '<td>'+(l.gitarDone?'âœ…':'â€”')+'</td><td class="num">'+l.gitarMin+'</td>' +
+      '<td><button type="button" class="btn-ghost btn" data-log-remove="'+l.date+'" aria-label="Sil">âœ•</button></td></tr>';
+  }).join("") || '<tr><td colspan="9" style="color:var(--ink-muted);">HenÃ¼z kayÄ±t yok â€” yukarÄ±dan bugÃ¼nÃ¼ kaydet.</td></tr>';
+  document.querySelectorAll("[data-log-remove]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var date = btn.dataset.logRemove;
+      state.logs = state.logs.filter(function(l){ return l.date!==date; });
+      saveState(); renderAll();
+    });
+  });
+}
+
+/* ---------- weekly review ---------- */
+function mostRecentMonday(d){ var day=d.getDay(); var diff=(day+6)%7; return addDays(d,-diff); }
+function renderWeeklyForm(){
+  document.getElementById("weekStart").value = isoDate(mostRecentMonday(todayClamped()));
+}
+document.getElementById("weeklyForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  var entry = {
+    weekOf: document.getElementById("weekStart").value,
+    gozlem: document.getElementById("weekObs").value.trim(),
+    change1: document.getElementById("weekChange1").value.trim(),
+    change2: document.getElementById("weekChange2").value.trim()
+  };
+  if(!entry.gozlem && !entry.change1) { showStatus("Ã–nce gÃ¶zlem ya da deÄŸiÅŸiklik yaz.", true); return; }
+  state.weekly.unshift(entry);
+  document.getElementById("weekObs").value = "";
+  document.getElementById("weekChange1").value = "";
+  document.getElementById("weekChange2").value = "";
+  saveState();
+  showStatus("HaftalÄ±k deÄŸerlendirme kaydedildi.");
+  renderWeeklyList();
+});
+function renderWeeklyList(){
+  var list = document.getElementById("weeklyList");
+  list.innerHTML = state.weekly.map(function(w){
+    var start = parseISO(w.weekOf);
+    var end = addDays(start,6);
+    var chips = [];
+    if(w.change1) chips.push('<span class="chip">â†’ '+esc(w.change1)+'</span>');
+    if(w.change2) chips.push('<span class="chip">â†’ '+esc(w.change2)+'</span>');
+    return '<li class="weekly-item"><div class="wk-date">'+fmtTR(start)+' â€“ '+fmtTR(end)+'</div>' +
+      (w.gozlem?'<p>'+esc(w.gozlem)+'</p>':'') +
+      '<div class="chips">'+chips.join("")+'</div></li>';
+  }).join("") || '<li style="color:var(--ink-muted);font-size:0.88rem;">HenÃ¼z haftalÄ±k deÄŸerlendirme yok.</li>';
+}
+
+/* ---------- status / footer actions ---------- */
+var statusTimer;
+function showStatus(msg, isErr){
+  var el = document.getElementById("statusLine");
+  el.textContent = msg;
+  el.classList.toggle("err", !!isErr);
+  clearTimeout(statusTimer);
+  statusTimer = setTimeout(function(){ el.textContent=""; }, 5000);
+}
+function armConfirm(btn, label, confirmLabel, action){
+  var armed=false, timer=null;
+  btn.textContent = label;
+  btn.addEventListener("click", function(){
+    if(!armed){
+      armed=true; btn.textContent=confirmLabel; btn.classList.add("danger-armed");
+      timer=setTimeout(function(){ armed=false; btn.textContent=label; btn.classList.remove("danger-armed"); },4000);
+    } else {
+      clearTimeout(timer); armed=false; btn.textContent=label; btn.classList.remove("danger-armed");
+      action();
+    }
+  });
+}
+armConfirm(document.getElementById("resetBtn"), "Verileri sÄ±fÄ±rla", "Emin misin? Tekrar tÄ±kla", function(){
+  state = defaultState();
+  saveState();
+  renderAll();
+  showStatus("'"+currentProfileName()+"' kullanÄ±cÄ±sÄ±nÄ±n verileri sÄ±fÄ±rlandÄ±.");
+});
+
+document.getElementById("exportBtn").addEventListener("click", function(){
+  var filename = "tale-90gun-yedek-"+isoDate(new Date())+".json";
+  var data = JSON.stringify(profiles, null, 2);
+  if(window.claude && window.claude.downloads){
+    window.claude.downloads.save({ filename: filename, data: data }).then(function(){
+      showStatus("Yedek indirildi (tÃ¼m kullanÄ±cÄ±lar dahil).");
+    }).catch(function(err){
+      if(err && err.code==="declined") showStatus("Ä°ndirme iptal edildi.");
+      else showStatus("Ä°ndirme baÅŸarÄ±sÄ±z: "+((err&&err.message)||"bilinmeyen hata"), true);
+    });
+    return;
+  }
+  try{
+    var blob = new Blob([data], { type:"application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    showStatus("Yedek indirildi (tÃ¼m kullanÄ±cÄ±lar dahil).");
+  }catch(err){
+    showStatus("Ä°ndirme baÅŸarÄ±sÄ±z.", true);
+  }
+});
+
+document.getElementById("importInput").addEventListener("change", function(e){
+  var file = e.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    try{
+      var parsed = JSON.parse(reader.result);
+      if(parsed && Array.isArray(parsed.list) && parsed.data){
+        if(!parsed.list.length) throw new Error("geÃ§ersiz dosya");
+        parsed.list = parsed.list.slice(0, MAX_PROFILES);
+        var newData = {};
+        parsed.list.forEach(function(p){ newData[p.id] = repairState(parsed.data[p.id] || defaultState()); });
+        profiles = { list: parsed.list, activeId: (parsed.activeId && newData[parsed.activeId]) ? parsed.activeId : parsed.list[0].id, data: newData };
+        state = profiles.data[profiles.activeId];
+        saveProfiles();
+        renderAll();
+        showStatus("TÃ¼m kullanÄ±cÄ± verileri iÃ§e aktarÄ±ldÄ±.");
+      } else if(parsed && parsed.goals){
+        state = repairState(parsed);
+        saveState();
+        renderAll();
+        showStatus("Veriler '"+currentProfileName()+"' kullanÄ±cÄ±sÄ±na aktarÄ±ldÄ±.");
+      } else {
+        throw new Error("geÃ§ersiz dosya");
+      }
+    }catch(err){
+      showStatus("Dosya okunamadÄ±: geÃ§ersiz JSON.", true);
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+});
+
+/* ---------- init ---------- */
+function renderAll(){
+  renderProfileBar();
+  renderHero();
+  renderFrontCards();
+  renderSectionLabels();
+  renderCalc();
+  fillBaselineForm();
+  renderDelta();
+  renderChecklists();
+  renderTimeAudit();
+  renderMilestones();
+  renderScoreForm();
+  renderStreaks();
+  renderHeatmap();
+  renderSparklines();
+  renderLogTable();
+  renderWeeklyForm();
+  renderWeeklyList();
+}
+initCheckpointTabs();
+renderAll();
+
+})();
+</script>
+
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); });
+}
+</script>
+</body>
+</html>
