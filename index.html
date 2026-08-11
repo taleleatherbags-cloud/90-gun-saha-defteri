@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
@@ -329,21 +329,22 @@
 <body>
 
 
+
 <div class="hero">
   <div class="wrap">
     <div class="profile-row">
-      <span class="profile-row-label">KullanÄ±cÄ±</span>
+      <span class="profile-row-label">Kullanıcı</span>
       <div class="profile-bar" id="profileBar"></div>
     </div>
     <div class="hero-top">
       <div>
-        <p class="eyebrow">Saha Defteri &middot; 11 AÄŸustos &rarr; 9 KasÄ±m 2026</p>
-        <h1>90 GÃ¼nlÃ¼k Yeniden YapÄ±lanma</h1>
-        <p class="tagline">YORUG &rarr; Fiziksel Disiplin &rarr; Elektro Gitar. Zirve yapmak deÄŸil, geri dÃ¶nemeyeceÄŸin bir sistem kurmak.</p>
+        <p class="eyebrow">Saha Defteri &middot; 11 Ağustos &rarr; 9 Kasım 2026</p>
+        <h1>90 Günlük Yeniden Yapılanma</h1>
+        <p class="tagline">YORUG &rarr; Fiziksel Disiplin &rarr; Elektro Gitar. Zirve yapmak değil, geri dönemeyeceğin bir sistem kurmak.</p>
       </div>
       <div class="day-badge">
-        <div class="num mono" id="heroDay">â€”</div>
-        <div class="of" id="heroOf">gÃ¼n</div>
+        <div class="num mono" id="heroDay">—</div>
+        <div class="of" id="heroOf">gün</div>
       </div>
     </div>
     <div class="progress-rail">
@@ -355,9 +356,9 @@
       </div>
     </div>
     <div class="hero-stats">
-      <div class="stat-tile"><span class="stat-value mono" id="statConsistency">â€”</span><span class="stat-label">Sistem tutarlÄ±lÄ±ÄŸÄ±</span></div>
-      <div class="stat-tile"><span class="stat-value mono" id="statLoggedDays">â€”</span><span class="stat-label">KayÄ±t tutulan gÃ¼n</span></div>
-      <div class="stat-tile"><span class="stat-value mono" id="statAll3">â€”</span><span class="stat-label">3/3 tamamlanan gÃ¼n</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="statConsistency">—</span><span class="stat-label">Sistem tutarlılığı</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="statLoggedDays">—</span><span class="stat-label">Kayıt tutulan gün</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="statAll3">—</span><span class="stat-label">3/3 tamamlanan gün</span></div>
     </div>
   </div>
 </div>
@@ -367,11 +368,11 @@
 <section id="framework">
   <div class="section-head">
     <p class="eyebrow">Sistem</p>
-    <h2>DÃ¶ngÃ¼: Envision &middot; Delete &middot; Install &middot; Track</h2>
-    <p>90 gÃ¼n boyunca dÃ¶rt fazÄ± tekrar tekrar dÃ¶nÃ¼yoruz. AmaÃ§ bir kerede mÃ¼kemmel olmak deÄŸil, dÃ¶ngÃ¼yÃ¼ haftalÄ±k Ã§evirmek.</p>
+    <h2>Döngü: Envision &middot; Delete &middot; Install &middot; Track</h2>
+    <p>90 gün boyunca dört fazı tekrar tekrar dönüyoruz. Amaç bir kerede mükemmel olmak değil, döngüyü haftalık çevirmek.</p>
   </div>
   <figure class="diagram">
-    <svg viewBox="0 0 800 210" role="img" aria-label="Envision, Delete, Install, Track fazlarÄ± sÄ±rayla akar; Track fazÄ±ndan haftalÄ±k dÃ¼zeltmeyle tekrar Envision fazÄ±na dÃ¶nÃ¼lÃ¼r.">
+    <svg viewBox="0 0 800 210" role="img" aria-label="Envision, Delete, Install, Track fazları sırayla akar; Track fazından haftalık düzeltmeyle tekrar Envision fazına dönülür.">
       <defs>
         <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
           <polygon points="0 0, 7 3, 0 6" fill="currentColor"></polygon>
@@ -379,7 +380,7 @@
       </defs>
       <!-- loop-back arrow -->
       <path d="M 700 90 C 700 20, 100 20, 100 90" fill="none" stroke="var(--accent-system)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrowHead)"></path>
-      <text x="400" y="26" text-anchor="middle" class="diag-cap">haftalÄ±k dÃ¼zelt</text>
+      <text x="400" y="26" text-anchor="middle" class="diag-cap">haftalık düzelt</text>
 
       <g class="diag-node">
         <rect x="20" y="90" width="160" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
@@ -392,15 +393,15 @@
       <g class="diag-node">
         <rect x="220" y="90" width="160" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
         <text x="300" y="115" text-anchor="middle" font-weight="600">DELETE</text>
-        <text x="300" y="134" text-anchor="middle" class="diag-cap">neyi Ã§Ä±karÄ±yorum?</text>
+        <text x="300" y="134" text-anchor="middle" class="diag-cap">neyi çıkarıyorum?</text>
       </g>
       <line x1="380" y1="120" x2="418" y2="120" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrowHead)"></line>
-      <text x="399" y="112" text-anchor="middle" class="diag-cap">yer aÃ§Ä±ldÄ±</text>
+      <text x="399" y="112" text-anchor="middle" class="diag-cap">yer açıldı</text>
 
       <g class="diag-node">
         <rect x="420" y="90" width="160" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
         <text x="500" y="115" text-anchor="middle" font-weight="600">INSTALL</text>
-        <text x="500" y="134" text-anchor="middle" class="diag-cap">neyi kolaylaÅŸtÄ±rÄ±yorum?</text>
+        <text x="500" y="134" text-anchor="middle" class="diag-cap">neyi kolaylaştırıyorum?</text>
       </g>
       <line x1="580" y1="120" x2="618" y2="120" stroke="currentColor" stroke-width="1.6" marker-end="url(#arrowHead)"></line>
       <text x="599" y="112" text-anchor="middle" class="diag-cap">sistem kuruldu</text>
@@ -408,22 +409,22 @@
       <g class="diag-node">
         <rect x="620" y="90" width="160" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"></rect>
         <text x="700" y="115" text-anchor="middle" font-weight="600">TRACK</text>
-        <text x="700" y="134" text-anchor="middle" class="diag-cap">Ã§alÄ±ÅŸÄ±yor mu?</text>
+        <text x="700" y="134" text-anchor="middle" class="diag-cap">çalışıyor mu?</text>
       </g>
 
-      <text x="400" y="185" text-anchor="middle" class="diag-cap">90 GÃœN &middot; SIFIR GÃœN YOK</text>
+      <text x="400" y="185" text-anchor="middle" class="diag-cap">90 GÜN &middot; SIFIR GÜN YOK</text>
     </svg>
-    <figcaption>Ã–nce hedefi netleÅŸtir (Envision), seni geri Ã§eken ÅŸeyi Ã§Ä±kar (Delete), doÄŸru davranÄ±ÅŸÄ± kolaylaÅŸtÄ±r (Install), sonra Ã¶lÃ§ ve haftada bir dÃ¼zelt (Track) â€” sonra baÅŸtan.</figcaption>
+    <figcaption>Önce hedefi netleştir (Envision), seni geri çeken şeyi çıkar (Delete), doğru davranışı kolaylaştır (Install), sonra ölç ve haftada bir düzelt (Track) — sonra baştan.</figcaption>
   </figure>
 </section>
 
-<div class="divider"><span>ÃœÃ§ Cephe</span></div>
+<div class="divider"><span>Üç Cephe</span></div>
 
 <section id="fronts">
   <div class="section-head">
     <p class="eyebrow">Envision &middot; Have &rarr; Be &rarr; Do</p>
-    <h2>Kim olduÄŸunu davranÄ±ÅŸlarÄ±n belirleyecek</h2>
-    <p>Her cephe iÃ§in Ã¶nce sonucu (HAVE), sonra o sonuca sahip kiÅŸiyi (BE), sonra o kiÅŸinin dÃ¼zenli yaptÄ±ÄŸÄ± ÅŸeyi (DO) tanÄ±mla. SonuÃ§ davranÄ±ÅŸtan gelir; davranÄ±ÅŸ kimliÄŸin parÃ§asÄ± olursa kalÄ±cÄ± olur.</p>
+    <h2>Kim olduğunu davranışların belirleyecek</h2>
+    <p>Her cephe için önce sonucu (HAVE), sonra o sonuca sahip kişiyi (BE), sonra o kişinin düzenli yaptığı şeyi (DO) tanımla. Sonuç davranıştan gelir; davranış kimliğin parçası olursa kalıcı olur.</p>
   </div>
   <div class="fronts-grid" id="frontsGrid"></div>
 </section>
@@ -431,61 +432,61 @@
 <section id="calc">
   <div class="section-head">
     <p class="eyebrow" id="calcEyebrow">Reverse Engineer &middot; YORUG</p>
-    <h2>SatÄ±ÅŸ matematiÄŸi</h2>
-    <p>"YORUG'u bÃ¼yÃ¼teceÄŸim" bir mekanizma deÄŸil. SonuÃ§tan geriye doÄŸru hesapla: hedef satÄ±ÅŸ &rarr; gereken dÃ¶nÃ¼ÅŸÃ¼m &rarr; gereken ziyaretÃ§i &rarr; gÃ¼nlÃ¼k trafik hedefi.</p>
+    <h2>Satış matematiği</h2>
+    <p>"YORUG'u büyüteceğim" bir mekanizma değil. Sonuçtan geriye doğru hesapla: hedef satış &rarr; gereken dönüşüm &rarr; gereken ziyaretçi &rarr; günlük trafik hedefi.</p>
   </div>
   <div class="calc-card">
     <div class="calc-grid">
-      <label><span class="field-label">Hedef satÄ±ÅŸ</span><input type="number" min="0" id="calcTargetSales" data-scope="calc" data-field="targetSales"></label>
-      <label><span class="field-label">KaÃ§ gÃ¼nde</span><input type="number" min="1" id="calcWindow" data-scope="calc" data-field="salesWindow"></label>
-      <label><span class="field-label">DÃ¶nÃ¼ÅŸÃ¼m oranÄ± (%)</span><input type="number" min="0.01" step="0.01" id="calcConv" data-scope="calc" data-field="convRate"></label>
+      <label><span class="field-label">Hedef satış</span><input type="number" min="0" id="calcTargetSales" data-scope="calc" data-field="targetSales"></label>
+      <label><span class="field-label">Kaç günde</span><input type="number" min="1" id="calcWindow" data-scope="calc" data-field="salesWindow"></label>
+      <label><span class="field-label">Dönüşüm oranı (%)</span><input type="number" min="0.01" step="0.01" id="calcConv" data-scope="calc" data-field="convRate"></label>
     </div>
     <div class="calc-out">
-      <div class="stat-tile"><span class="stat-value mono" id="calcOutVisitors">â€”</span><span class="stat-label">Gereken toplam ziyaretÃ§i</span></div>
-      <div class="stat-tile"><span class="stat-value mono" id="calcOutDaily">â€”</span><span class="stat-label">GÃ¼nlÃ¼k ziyaretÃ§i hedefi</span></div>
-      <div class="stat-tile"><span class="stat-value mono" id="calcOutPerDay">â€”</span><span class="stat-label">Hedef satÄ±ÅŸ / gÃ¼n</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="calcOutVisitors">—</span><span class="stat-label">Gereken toplam ziyaretçi</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="calcOutDaily">—</span><span class="stat-label">Günlük ziyaretçi hedefi</span></div>
+      <div class="stat-tile"><span class="stat-value mono" id="calcOutPerDay">—</span><span class="stat-label">Hedef satış / gün</span></div>
     </div>
     <div class="funnel" id="calcFunnel"></div>
-    <label class="field-block"><span class="field-label">Bu ziyaretÃ§iler nereden gelecek? (Reels, reklam, mevcut takipÃ§i, influencer, organik arama, DMâ€¦)</span>
-      <textarea data-scope="goal" data-front="yorug" data-field="trafficSources" placeholder="Ã–rn: haftada 3 reels + haftalÄ±k 500â‚º retargeting reklamÄ± + gÃ¼nlÃ¼k 15 hikaye DM'iâ€¦"></textarea>
+    <label class="field-block"><span class="field-label">Bu ziyaretçiler nereden gelecek? (Reels, reklam, mevcut takipçi, influencer, organik arama, DM…)</span>
+      <textarea data-scope="goal" data-front="yorug" data-field="trafficSources" placeholder="Örn: haftada 3 reels + haftalık 500₺ retargeting reklamı + günlük 15 hikaye DM'i…"></textarea>
     </label>
   </div>
 </section>
 
-<div class="divider"><span id="dividerSporLabel">Spor &middot; Ã–lÃ§Ã¼mler</span></div>
+<div class="divider"><span id="dividerSporLabel">Spor &middot; Ölçümler</span></div>
 
 <section id="baseline">
   <div class="section-head">
     <p class="eyebrow" id="baselineEyebrow">Envision &middot; Spor</p>
-    <h2>BaÅŸlangÄ±Ã§ Ã¶lÃ§Ã¼mleri &amp; 30/60/90 kontrol noktalarÄ±</h2>
-    <p>GÃ¼n 1'de bir kere Ã¶lÃ§, sonra 30/60/90. gÃ¼n iÅŸaretlerinde tekrar Ã¶lÃ§ â€” fark otomatik hesaplanÄ±r.</p>
+    <h2>Başlangıç ölçümleri &amp; 30/60/90 kontrol noktaları</h2>
+    <p>Gün 1'de bir kere ölç, sonra 30/60/90. gün işaretlerinde tekrar ölç — fark otomatik hesaplanır.</p>
   </div>
   <div class="calc-card" style="border-top-color:var(--accent-spor)">
-    <h3 style="font-size:1rem;">GÃ¼n 1 &middot; BaÅŸlangÄ±Ã§</h3>
+    <h3 style="font-size:1rem;">Gün 1 &middot; Başlangıç</h3>
     <div class="measure-grid">
       <label><span class="field-label">Tarih</span><input type="date" data-scope="baseline" data-field="date"></label>
       <label><span class="field-label">Kilo (kg)</span><input type="number" step="0.1" data-scope="baseline" data-field="kilo"></label>
       <label><span class="field-label">Bel (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="bel"></label>
-      <label><span class="field-label">GÃ¶ÄŸÃ¼s (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="gogus"></label>
+      <label><span class="field-label">Göğüs (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="gogus"></label>
       <label><span class="field-label">Kol (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="kol"></label>
       <label><span class="field-label">Bacak (cm)</span><input type="number" step="0.1" data-scope="baseline" data-field="bacak"></label>
-      <label style="grid-column:span 2;"><span class="field-label">Temel hareket aÄŸÄ±rlÄ±klarÄ±</span><input type="text" placeholder="squat 40kg, press 20kg, row 30kgâ€¦" data-scope="baseline" data-field="lifts"></label>
-      <label style="grid-column:span 2;"><span class="field-label">Kondisyon (Ã¶r. 2km sÃ¼resi)</span><input type="text" data-scope="baseline" data-field="kondisyon"></label>
+      <label style="grid-column:span 2;"><span class="field-label">Temel hareket ağırlıkları</span><input type="text" placeholder="squat 40kg, press 20kg, row 30kg…" data-scope="baseline" data-field="lifts"></label>
+      <label style="grid-column:span 2;"><span class="field-label">Kondisyon (ör. 2km süresi)</span><input type="text" data-scope="baseline" data-field="kondisyon"></label>
     </div>
 
     <div class="checkpoint-tabs" id="cpTabs">
-      <button class="cp-tab active" data-cp="d30">30. GÃ¼n</button>
-      <button class="cp-tab" data-cp="d60">60. GÃ¼n</button>
-      <button class="cp-tab" data-cp="d90">90. GÃ¼n</button>
+      <button class="cp-tab active" data-cp="d30">30. Gün</button>
+      <button class="cp-tab" data-cp="d60">60. Gün</button>
+      <button class="cp-tab" data-cp="d90">90. Gün</button>
     </div>
     <div class="cp-panel active" data-cp-panel="d30">
       <div class="measure-grid">
         <label><span class="field-label">Kilo (kg)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="kilo"></label>
         <label><span class="field-label">Bel (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="bel"></label>
-        <label><span class="field-label">GÃ¶ÄŸÃ¼s (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="gogus"></label>
+        <label><span class="field-label">Göğüs (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="gogus"></label>
         <label><span class="field-label">Kol (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="kol"></label>
         <label><span class="field-label">Bacak (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d30" data-field="bacak"></label>
-        <label style="grid-column:span 2;"><span class="field-label">Temel hareket aÄŸÄ±rlÄ±klarÄ±</span><input type="text" data-scope="checkpoint" data-checkpoint="d30" data-field="lifts"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Temel hareket ağırlıkları</span><input type="text" data-scope="checkpoint" data-checkpoint="d30" data-field="lifts"></label>
         <label style="grid-column:span 2;"><span class="field-label">Kondisyon</span><input type="text" data-scope="checkpoint" data-checkpoint="d30" data-field="kondisyon"></label>
       </div>
     </div>
@@ -493,10 +494,10 @@
       <div class="measure-grid">
         <label><span class="field-label">Kilo (kg)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="kilo"></label>
         <label><span class="field-label">Bel (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="bel"></label>
-        <label><span class="field-label">GÃ¶ÄŸÃ¼s (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="gogus"></label>
+        <label><span class="field-label">Göğüs (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="gogus"></label>
         <label><span class="field-label">Kol (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="kol"></label>
         <label><span class="field-label">Bacak (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d60" data-field="bacak"></label>
-        <label style="grid-column:span 2;"><span class="field-label">Temel hareket aÄŸÄ±rlÄ±klarÄ±</span><input type="text" data-scope="checkpoint" data-checkpoint="d60" data-field="lifts"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Temel hareket ağırlıkları</span><input type="text" data-scope="checkpoint" data-checkpoint="d60" data-field="lifts"></label>
         <label style="grid-column:span 2;"><span class="field-label">Kondisyon</span><input type="text" data-scope="checkpoint" data-checkpoint="d60" data-field="kondisyon"></label>
       </div>
     </div>
@@ -504,10 +505,10 @@
       <div class="measure-grid">
         <label><span class="field-label">Kilo (kg)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="kilo"></label>
         <label><span class="field-label">Bel (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="bel"></label>
-        <label><span class="field-label">GÃ¶ÄŸÃ¼s (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="gogus"></label>
+        <label><span class="field-label">Göğüs (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="gogus"></label>
         <label><span class="field-label">Kol (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="kol"></label>
         <label><span class="field-label">Bacak (cm)</span><input type="number" step="0.1" data-scope="checkpoint" data-checkpoint="d90" data-field="bacak"></label>
-        <label style="grid-column:span 2;"><span class="field-label">Temel hareket aÄŸÄ±rlÄ±klarÄ±</span><input type="text" data-scope="checkpoint" data-checkpoint="d90" data-field="lifts"></label>
+        <label style="grid-column:span 2;"><span class="field-label">Temel hareket ağırlıkları</span><input type="text" data-scope="checkpoint" data-checkpoint="d90" data-field="lifts"></label>
         <label style="grid-column:span 2;"><span class="field-label">Kondisyon</span><input type="text" data-scope="checkpoint" data-checkpoint="d90" data-field="kondisyon"></label>
       </div>
     </div>
@@ -520,8 +521,8 @@
 <section id="checklists">
   <div class="section-head">
     <p class="eyebrow">Delete &middot; Install</p>
-    <h2>Ejderhalardan uzak dur, doÄŸru davranÄ±ÅŸÄ± kolaylaÅŸtÄ±r</h2>
-    <p>Ejderhayla savaÅŸma â€” ona ulaÅŸmayÄ± zorlaÅŸtÄ±r. Ä°yi davranÄ±ÅŸÄ± ise "karar vermeden" yapabileceÄŸin kadar kolaylaÅŸtÄ±r (habit stacking).</p>
+    <h2>Ejderhalardan uzak dur, doğru davranışı kolaylaştır</h2>
+    <p>Ejderhayla savaşma — ona ulaşmayı zorlaştır. İyi davranışı ise "karar vermeden" yapabileceğin kadar kolaylaştır (habit stacking).</p>
   </div>
   <div class="checklist-grid" id="checklistGrid"></div>
 </section>
@@ -529,23 +530,23 @@
 <section id="timeaudit">
   <div class="section-head">
     <p class="eyebrow">Delete &middot; Zaman Denetimi</p>
-    <h2>Bu saat beni hedefe mi gÃ¶tÃ¼rÃ¼yor?</h2>
-    <p>YaptÄ±ÄŸÄ±n ÅŸeyi yaz, sÃ¼resini gir, sonra etikete tÄ±klayarak ğŸŸ¢ (hedefe gÃ¶tÃ¼rÃ¼yor) / ğŸ”´ (uzaklaÅŸtÄ±rÄ±yor) / âšª (nÃ¶tr) arasÄ±nda geÃ§iÅŸ yap.</p>
+    <h2>Bu saat beni hedefe mi götürüyor?</h2>
+    <p>Yaptığın şeyi yaz, süresini gir, sonra etikete tıklayarak 🟢 (hedefe götürüyor) / 🔴 (uzaklaştırıyor) / ⚪ (nötr) arasında geçiş yap.</p>
   </div>
   <div class="table-wrap">
     <table>
-      <thead><tr><th>Etkinlik</th><th>SÃ¼re (dk)</th><th>Etiket</th><th></th></tr></thead>
+      <thead><tr><th>Etkinlik</th><th>Süre (dk)</th><th>Etiket</th><th></th></tr></thead>
       <tbody id="auditBody"></tbody>
     </table>
   </div>
   <div class="audit-form">
-    <input type="text" id="auditActivity" placeholder="Etkinlik (Ã¶r. Instagram kaydÄ±rma)">
+    <input type="text" id="auditActivity" placeholder="Etkinlik (ör. Instagram kaydırma)">
     <input type="number" id="auditMinutes" placeholder="dk" min="1">
     <button class="btn btn-primary" id="auditAdd">Ekle</button>
   </div>
   <div class="audit-totals">
-    <div class="stat-tile"><span class="stat-value mono" id="auditGreenTotal">â€”</span><span class="stat-label">ğŸŸ¢ dakika</span></div>
-    <div class="stat-tile"><span class="stat-value mono" id="auditRedTotal">â€”</span><span class="stat-label">ğŸ”´ dakika</span></div>
+    <div class="stat-tile"><span class="stat-value mono" id="auditGreenTotal">—</span><span class="stat-label">🟢 dakika</span></div>
+    <div class="stat-tile"><span class="stat-value mono" id="auditRedTotal">—</span><span class="stat-label">🔴 dakika</span></div>
   </div>
 </section>
 
@@ -553,9 +554,9 @@
 
 <section id="milestones">
   <div class="section-head">
-    <p class="eyebrow">Envision &middot; Kilometre TaÅŸlarÄ±</p>
-    <h2>90 gÃ¼nÃ¼n sonunda neyi baÅŸarmÄ±ÅŸ sayÄ±lacaksÄ±n?</h2>
-    <p>BulanÄ±k niyeti ("gitar Ã¶ÄŸrenmek istiyorum") Ã¶lÃ§Ã¼lebilir bir tanÄ±ma Ã§evir. UlaÅŸtÄ±ÄŸÄ±nda kutuyu iÅŸaretle.</p>
+    <p class="eyebrow">Envision &middot; Kilometre Taşları</p>
+    <h2>90 günün sonunda neyi başarmış sayılacaksın?</h2>
+    <p>Bulanık niyeti ("gitar öğrenmek istiyorum") ölçülebilir bir tanıma çevir. Ulaştığında kutuyu işaretle.</p>
   </div>
   <div class="milestone-grid" id="milestoneGrid"></div>
 </section>
@@ -564,14 +565,14 @@
 
 <section id="scorecard">
   <div class="section-head">
-    <p class="eyebrow">Track &middot; GÃ¼nlÃ¼k Skor KartÄ±</p>
-    <h2>BugÃ¼nÃ¼ kaydet</h2>
-    <p>KÃ¶tÃ¼ bir gÃ¼n bile "sÄ±fÄ±r gÃ¼n" deÄŸildir â€” pazarlÄ±ksÄ±z minimum yeterli. Never miss twice: iki gÃ¼n Ã¼st Ã¼ste aynÄ± cepheyi kaÃ§Ä±rÄ±rsan burada uyarÄ± Ã§Ä±kar.</p>
+    <p class="eyebrow">Track &middot; Günlük Skor Kartı</p>
+    <h2>Bugünü kaydet</h2>
+    <p>Kötü bir gün bile "sıfır gün" değildir — pazarlıksız minimum yeterli. Never miss twice: iki gün üst üste aynı cepheyi kaçırırsan burada uyarı çıkar.</p>
   </div>
   <form class="score-form" id="scoreForm">
     <div class="row1">
       <label><span class="field-label">Tarih</span><input type="date" id="scoreDate" required></label>
-      <button type="submit" class="btn btn-primary">GÃ¼nÃ¼ kaydet</button>
+      <button type="submit" class="btn btn-primary">Günü kaydet</button>
       <span id="scoreFormHint" style="font-size:0.78rem;color:var(--ink-muted);"></span>
     </div>
     <div class="score-groups" id="scoreGroups"></div>
@@ -580,22 +581,22 @@
   <div class="streak-row" id="streakRow"></div>
 
   <div class="heatmap-block">
-    <h3 style="font-size:1rem;">Son 30 gÃ¼n</h3>
+    <h3 style="font-size:1rem;">Son 30 gün</h3>
     <div id="heatmapLines"></div>
     <div class="heatmap-legend">
-      <span><span class="sw" style="background:var(--surface-2);border:1px solid var(--border);"></span>kayÄ±t yok</span>
-      <span><span class="sw" style="background:transparent;border:1.5px solid var(--ink-muted);opacity:.6;"></span>kaÃ§Ä±rÄ±ldÄ±</span>
-      <span><span class="sw" style="background:var(--ink-muted);"></span>yapÄ±ldÄ±</span>
+      <span><span class="sw" style="background:var(--surface-2);border:1px solid var(--border);"></span>kayıt yok</span>
+      <span><span class="sw" style="background:transparent;border:1.5px solid var(--ink-muted);opacity:.6;"></span>kaçırıldı</span>
+      <span><span class="sw" style="background:var(--ink-muted);"></span>yapıldı</span>
     </div>
   </div>
 
   <div class="spark-block" id="sparkBlock"></div>
 
   <div class="log-table-wrap">
-    <h3 style="font-size:1rem;">TÃ¼m kayÄ±tlar</h3>
+    <h3 style="font-size:1rem;">Tüm kayıtlar</h3>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Tarih</th><th id="thYorugName">YORUG</th><th>SatÄ±ÅŸ</th><th>ZiyaretÃ§i</th><th id="thSporName">Spor</th><th>dk</th><th id="thGitarName">Gitar</th><th>dk</th><th></th></tr></thead>
+        <thead><tr><th>Tarih</th><th id="thYorugName">YORUG</th><th>Satış</th><th>Ziyaretçi</th><th id="thSporName">Spor</th><th>dk</th><th id="thGitarName">Gitar</th><th>dk</th><th></th></tr></thead>
         <tbody id="logBody"></tbody>
       </table>
     </div>
@@ -606,22 +607,22 @@
 
 <section id="weekly">
   <div class="section-head">
-    <p class="eyebrow">Track &middot; HaftalÄ±k DeÄŸerlendirme</p>
-    <h2>Sistem Ã§alÄ±ÅŸÄ±yor mu?</h2>
-    <p>BaÅŸarÄ±lÄ±/baÅŸarÄ±sÄ±z diye bakma. Bu hafta neyin iÅŸe yaramadÄ±ÄŸÄ±na bak, gelecek hafta iÃ§in en fazla 1-2 deÄŸiÅŸiklik seÃ§.</p>
+    <p class="eyebrow">Track &middot; Haftalık Değerlendirme</p>
+    <h2>Sistem çalışıyor mu?</h2>
+    <p>Başarılı/başarısız diye bakma. Bu hafta neyin işe yaramadığına bak, gelecek hafta için en fazla 1-2 değişiklik seç.</p>
   </div>
   <form class="weekly-form" id="weeklyForm">
     <div class="row1">
-      <label><span class="field-label">Hafta baÅŸlangÄ±cÄ±</span><input type="date" id="weekStart" required></label>
+      <label><span class="field-label">Hafta başlangıcı</span><input type="date" id="weekStart" required></label>
     </div>
-    <label class="field-block"><span class="field-label">Bu hafta ne gÃ¶rdÃ¼n? (veri: gÃ¶rÃ¼ntÃ¼lenme, ziyaret, sepet, antrenman, dakikaâ€¦)</span>
-      <textarea id="weekObs" placeholder="Ã–r: 3.000 gÃ¶rÃ¼ntÃ¼lenme, 80 site ziyareti, 6 sepete ekleme, 0 satÄ±ÅŸ â†’ sorun Ã¼rÃ¼n sayfasÄ±nda olabilir."></textarea>
+    <label class="field-block"><span class="field-label">Bu hafta ne gördün? (veri: görüntülenme, ziyaret, sepet, antrenman, dakika…)</span>
+      <textarea id="weekObs" placeholder="Ör: 3.000 görüntülenme, 80 site ziyareti, 6 sepete ekleme, 0 satış → sorun ürün sayfasında olabilir."></textarea>
     </label>
     <div class="row1">
-      <label style="flex:1;"><span class="field-label">DeÄŸiÅŸiklik #1</span><input type="text" id="weekChange1" placeholder="Gelecek hafta deÄŸiÅŸtireceÄŸim tek bÃ¼yÃ¼k ÅŸey"></label>
-      <label style="flex:1;"><span class="field-label">DeÄŸiÅŸiklik #2 (opsiyonel)</span><input type="text" id="weekChange2"></label>
+      <label style="flex:1;"><span class="field-label">Değişiklik #1</span><input type="text" id="weekChange1" placeholder="Gelecek hafta değiştireceğim tek büyük şey"></label>
+      <label style="flex:1;"><span class="field-label">Değişiklik #2 (opsiyonel)</span><input type="text" id="weekChange2"></label>
     </div>
-    <div style="margin-top:14px;"><button type="submit" class="btn btn-primary">HaftayÄ± kaydet</button></div>
+    <div style="margin-top:14px;"><button type="submit" class="btn btn-primary">Haftayı kaydet</button></div>
   </form>
   <ul class="weekly-list" id="weeklyList"></ul>
 </section>
@@ -632,11 +633,11 @@
   <div class="wrap">
     <div class="footer-actions">
       <button class="btn btn-primary" id="exportBtn">JSON olarak indir</button>
-      <span class="btn file-btn">Dosyadan iÃ§e aktar<input type="file" id="importInput" accept="application/json,.json"></span>
-      <button class="btn btn-danger" id="resetBtn">Verileri sÄ±fÄ±rla</button>
+      <span class="btn file-btn">Dosyadan içe aktar<input type="file" id="importInput" accept="application/json,.json"></span>
+      <button class="btn btn-danger" id="resetBtn">Verileri sıfırla</button>
     </div>
     <div id="statusLine"></div>
-    <p class="closing">"90 gÃ¼nÃ¼n sonunda sadece YORUG, vÃ¼cudun ve gitar seviyen deÄŸiÅŸmez â€” kendine verdiÄŸin sÃ¶zlerin aÄŸÄ±rlÄ±ÄŸÄ± deÄŸiÅŸir." TÃ¼m veriler yalnÄ±zca bu tarayÄ±cÄ±da saklanÄ±r (en fazla 3 kullanÄ±cÄ±, Ã¼stteki profil Ã§ubuÄŸundan eklenir/deÄŸiÅŸtirilir); dÃ¼zenli olarak JSON yedeÄŸi al â€” indirdiÄŸin dosya tÃ¼m kullanÄ±cÄ±larÄ± iÃ§erir.</p>
+    <p class="closing">"90 günün sonunda sadece YORUG, vücudun ve gitar seviyen değişmez — kendine verdiğin sözlerin ağırlığı değişir." Tüm veriler yalnızca bu tarayıcıda saklanır (en fazla 3 kullanıcı, üstteki profil çubuğundan eklenir/değiştirilir); düzenli olarak JSON yedeği al — indirdiğin dosya tüm kullanıcıları içerir.</p>
   </div>
 </footer>
 
@@ -656,33 +657,33 @@ var ICON_GUITAR = '<svg viewBox="0 0 48 48"><rect x="20.5" y="3" width="7" heigh
 var ICON_ARROW_DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="18"></line><polyline points="6 12 12 18 18 12"></polyline></svg>';
 
 var FRONTS = [
-  { key:"yorug", name:"YORUG", tag:"Ä°ÅŸ / Marka", accent:"yorug", icon:ICON_BAG,
-    have:"GÃ¼nde ortalama 1 satÄ±ÅŸ Ã¼retebilen bir YORUG.",
-    be:"MarkasÄ±nÄ± sistematik yÃ¶neten bir kurucu / kreatif direktÃ¶r.",
-    doText:"Her hafta iÃ§erik Ã¼retir, satÄ±ÅŸ verilerini inceler, reklam kreatiflerini test eder, Ã¼rÃ¼n sayfasÄ±nÄ± geliÅŸtirir, mÃ¼ÅŸteriyle iletiÅŸim kurar.",
-    nonNeg:"En az bir satÄ±ÅŸ aksiyonu: DM yanÄ±tla, 1 reels Ã§ek ya da retargeting kontrol et.",
-    northStar:"AylÄ±k satÄ±ÅŸ adedi (son 30 gÃ¼n)",
-    d30:"Ä°lk 10 satÄ±ÅŸ tamamlandÄ±, hangi kanaldan geldiÄŸi not edildi.",
-    d60:"HaftalÄ±k iÃ§erik + reklam dÃ¼zeni oturdu, 20. satÄ±ÅŸa ulaÅŸÄ±ldÄ±.",
-    d90:"Son 30 gÃ¼nde en az 30 sipariÅŸ. SatÄ±ÅŸlarÄ±n hangi kanaldan geldiÄŸi net, haftalÄ±k iÃ§erik dÃ¼zeni otomatik iÅŸliyor." },
+  { key:"yorug", name:"YORUG", tag:"İş / Marka", accent:"yorug", icon:ICON_BAG,
+    have:"Günde ortalama 1 satış üretebilen bir YORUG.",
+    be:"Markasını sistematik yöneten bir kurucu / kreatif direktör.",
+    doText:"Her hafta içerik üretir, satış verilerini inceler, reklam kreatiflerini test eder, ürün sayfasını geliştirir, müşteriyle iletişim kurar.",
+    nonNeg:"En az bir satış aksiyonu: DM yanıtla, 1 reels çek ya da retargeting kontrol et.",
+    northStar:"Aylık satış adedi (son 30 gün)",
+    d30:"İlk 10 satış tamamlandı, hangi kanaldan geldiği not edildi.",
+    d60:"Haftalık içerik + reklam düzeni oturdu, 20. satışa ulaşıldı.",
+    d90:"Son 30 günde en az 30 sipariş. Satışların hangi kanaldan geldiği net, haftalık içerik düzeni otomatik işliyor." },
   { key:"spor", name:"SPOR", tag:"Fiziksel Disiplin", accent:"spor", icon:ICON_DUMBBELL,
-    have:"Haftada 4 gÃ¼n antrenman yapan, Ã¶lÃ§Ã¼mlerini kaydeden bir vÃ¼cut.",
-    be:"Sporu kimliÄŸinin parÃ§asÄ± haline getirmiÅŸ biri.",
-    doText:"Haftada 4 kez antrenmana gider, formu tempoya feda etmez, Ã¶lÃ§Ã¼mlerini dÃ¼zenli kaydeder.",
-    nonNeg:"10-20 dakikalÄ±k minimum hareket ya da bilinÃ§li planlanmÄ±ÅŸ dinlenme gÃ¼nÃ¼.",
-    northStar:"Ayda tamamlanan antrenman sayÄ±sÄ±",
-    d30:"Haftada 4 antrenman rutini oturdu, ilk Ã¶lÃ§Ã¼m farklarÄ± alÄ±ndÄ±.",
-    d60:"Temel hareketlerde aÄŸÄ±rlÄ±klar arttÄ±, kondisyon gÃ¶zle gÃ¶rÃ¼lÃ¼r iyileÅŸti.",
-    d90:"90 gÃ¼ndÃ¼r sistemi bÄ±rakmamÄ±ÅŸ, haftada 4 gÃ¼n antrenman yapan biriyim." },
-  { key:"gitar", name:"GÄ°TAR", tag:"Uzun Vadeli Beceri", accent:"gitar", icon:ICON_GUITAR,
-    have:"Temel notalarÄ±, akorlarÄ± ve 2-3 riffi Ã§alabilen bir kulak/el.",
-    be:"KÃ¶tÃ¼ gÃ¼nde bile zinciri koruyan bir mÃ¼zisyen.",
-    doText:"Her gÃ¼n en az minimum standardÄ± uygular: 5 dk nota, 5 dk egzersiz, 5 dk riff/ÅŸarkÄ±.",
+    have:"Haftada 4 gün antrenman yapan, ölçümlerini kaydeden bir vücut.",
+    be:"Sporu kimliğinin parçası haline getirmiş biri.",
+    doText:"Haftada 4 kez antrenmana gider, formu tempoya feda etmez, ölçümlerini düzenli kaydeder.",
+    nonNeg:"10-20 dakikalık minimum hareket ya da bilinçli planlanmış dinlenme günü.",
+    northStar:"Ayda tamamlanan antrenman sayısı",
+    d30:"Haftada 4 antrenman rutini oturdu, ilk ölçüm farkları alındı.",
+    d60:"Temel hareketlerde ağırlıklar arttı, kondisyon gözle görülür iyileşti.",
+    d90:"90 gündür sistemi bırakmamış, haftada 4 gün antrenman yapan biriyim." },
+  { key:"gitar", name:"GİTAR", tag:"Uzun Vadeli Beceri", accent:"gitar", icon:ICON_GUITAR,
+    have:"Temel notaları, akorları ve 2-3 riffi çalabilen bir kulak/el.",
+    be:"Kötü günde bile zinciri koruyan bir müzisyen.",
+    doText:"Her gün en az minimum standardı uygular: 5 dk nota, 5 dk egzersiz, 5 dk riff/şarkı.",
     nonNeg:"Minimum 15 dakika: 5 dk nota + 5 dk egzersiz + 5 dk riff.",
-    northStar:"HaftalÄ±k Ã§alÄ±ÅŸma gÃ¼nÃ¼ sayÄ±sÄ±",
-    d30:"Temel notalar ve 3-4 akor rahat basÄ±lÄ±yor.",
-    d60:"Metronomla egzersiz yapÄ±labiliyor, 1 parÃ§anÄ±n riffi Ã§alÄ±nabiliyor.",
-    d90:"Klavyedeki temel notalarÄ± biliyorum, temel akorlarÄ± basabiliyorum, metronomla Ã§alÄ±ÅŸabiliyorum ve 2-3 parÃ§anÄ±n riffini Ã§alabiliyorum." }
+    northStar:"Haftalık çalışma günü sayısı",
+    d30:"Temel notalar ve 3-4 akor rahat basılıyor.",
+    d60:"Metronomla egzersiz yapılabiliyor, 1 parçanın riffi çalınabiliyor.",
+    d90:"Klavyedeki temel notaları biliyorum, temel akorları basabiliyorum, metronomla çalışabiliyorum ve 2-3 parçanın riffini çalabiliyorum." }
 ];
 
 function defaultState(){
@@ -735,7 +736,7 @@ function loadProfiles(){
     var raw = localStorage.getItem(PROFILES_KEY);
     if(raw){
       var parsed = JSON.parse(raw);
-      if(!parsed.list || !parsed.list.length) throw new Error("boÅŸ profil listesi");
+      if(!parsed.list || !parsed.list.length) throw new Error("boş profil listesi");
       parsed.list = parsed.list.slice(0, MAX_PROFILES);
       parsed.data = parsed.data || {};
       parsed.list.forEach(function(p){
@@ -766,7 +767,7 @@ function addDays(d,n){ var r=new Date(d); r.setDate(r.getDate()+n); return r; }
 function daysBetween(a,b){ return Math.round((b-a)/86400000); }
 function clampDate(d,lo,hi){ if(d<lo) return lo; if(d>hi) return hi; return d; }
 function fmtTR(d){
-  var months=["Oca","Åub","Mar","Nis","May","Haz","Tem","AÄŸu","Eyl","Eki","Kas","Ara"];
+  var months=["Oca","Şub","Mar","Nis","May","Haz","Tem","Ağu","Eyl","Eki","Kas","Ara"];
   return d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
 }
 function todayClamped(){ return clampDate(new Date(new Date().setHours(0,0,0,0)), START_DATE, END_DATE); }
@@ -817,15 +818,15 @@ function switchProfile(id){
   renderAll();
 }
 function addProfile(name){
-  if(profiles.list.length >= MAX_PROFILES){ showStatus("En fazla "+MAX_PROFILES+" kullanÄ±cÄ± eklenebilir.", true); return; }
+  if(profiles.list.length >= MAX_PROFILES){ showStatus("En fazla "+MAX_PROFILES+" kullanıcı eklenebilir.", true); return; }
   var id = "p"+Date.now();
-  profiles.list.push({ id:id, name:name || ("KullanÄ±cÄ± "+(profiles.list.length+1)) });
+  profiles.list.push({ id:id, name:name || ("Kullanıcı "+(profiles.list.length+1)) });
   profiles.data[id] = defaultState();
   profiles.activeId = id;
   state = profiles.data[id];
   saveProfiles();
   renderAll();
-  showStatus("KullanÄ±cÄ± eklendi.");
+  showStatus("Kullanıcı eklendi.");
 }
 function removeProfile(id){
   if(profiles.list.length <= 1) return;
@@ -846,7 +847,7 @@ function removeProfile(id){
   if(wasActive){ profiles.activeId = profiles.list[0].id; state = profiles.data[profiles.activeId]; }
   saveProfiles();
   renderAll();
-  showStatus("KullanÄ±cÄ± silindi.");
+  showStatus("Kullanıcı silindi.");
 }
 function renderProfileBar(){
   var bar = document.getElementById("profileBar");
@@ -856,27 +857,27 @@ function renderProfileBar(){
       return '<form class="profile-rename-form" id="profileRenameForm">' +
         '<input type="text" id="profileRenameInput" value="'+esc(p.name)+'" maxlength="24">' +
         '<button type="submit" class="btn" style="padding:5px 10px;">Kaydet</button>' +
-        '<button type="button" class="btn btn-ghost" id="profileRenameCancel" style="padding:5px 10px;">VazgeÃ§</button>' +
+        '<button type="button" class="btn btn-ghost" id="profileRenameCancel" style="padding:5px 10px;">Vazgeç</button>' +
       '</form>';
     }
     var removeArmed = removeArmedId === p.id;
     return '<span class="profile-pill'+(active?' active':'')+'" data-profile-switch="'+p.id+'" tabindex="0" role="button" aria-pressed="'+active+'">' +
       '<span class="avatar">'+esc(initials(p.name))+'</span>' +
       '<span>'+esc(p.name)+'</span>' +
-      (active ? '<button type="button" class="pill-btn" data-profile-rename aria-label="AdÄ± deÄŸiÅŸtir">âœ</button>' : '') +
-      (profiles.list.length>1 ? '<button type="button" class="pill-btn'+(removeArmed?' danger-armed':'')+'" data-profile-remove="'+p.id+'" aria-label="KullanÄ±cÄ±yÄ± sil">'+(removeArmed?'emin misin?':'âœ•')+'</button>' : '') +
+      (active ? '<button type="button" class="pill-btn" data-profile-rename aria-label="Adı değiştir">✎</button>' : '') +
+      (profiles.list.length>1 ? '<button type="button" class="pill-btn'+(removeArmed?' danger-armed':'')+'" data-profile-remove="'+p.id+'" aria-label="Kullanıcıyı sil">'+(removeArmed?'emin misin?':'✕')+'</button>' : '') +
     '</span>';
   }).join("");
 
   if(profiles.list.length < MAX_PROFILES){
     if(profileAddMode){
       html += '<form class="profile-add-form" id="profileAddForm">' +
-        '<input type="text" id="profileAddInput" placeholder="Ä°simâ€¦" maxlength="24">' +
+        '<input type="text" id="profileAddInput" placeholder="İsim…" maxlength="24">' +
         '<button type="submit" class="btn btn-primary" style="padding:5px 10px;">Ekle</button>' +
-        '<button type="button" class="btn btn-ghost" id="profileAddCancel" style="padding:5px 10px;">VazgeÃ§</button>' +
+        '<button type="button" class="btn btn-ghost" id="profileAddCancel" style="padding:5px 10px;">Vazgeç</button>' +
       '</form>';
     } else {
-      html += '<button type="button" class="btn" id="profileAddBtn" style="padding:5px 12px;">+ KullanÄ±cÄ± ekle</button>';
+      html += '<button type="button" class="btn" id="profileAddBtn" style="padding:5px 12px;">+ Kullanıcı ekle</button>';
     }
   }
   bar.innerHTML = html;
@@ -942,12 +943,12 @@ function renderHero(){
   var today = todayClamped();
   var total = daysBetween(START_DATE, END_DATE) + 1;
   var idx = daysBetween(START_DATE, today) + 1;
-  document.getElementById("heroDay").textContent = "GÃœN " + idx;
-  document.getElementById("heroOf").textContent = "/ " + total + " gÃ¼n";
+  document.getElementById("heroDay").textContent = "GÜN " + idx;
+  document.getElementById("heroOf").textContent = "/ " + total + " gün";
   var pct = Math.round((idx/total)*100);
   document.getElementById("heroBarFill").style.width = pct + "%";
   document.getElementById("heroStartLabel").textContent = fmtTR(START_DATE);
-  document.getElementById("heroPercentLabel").textContent = "%" + pct + " tamamlandÄ±";
+  document.getElementById("heroPercentLabel").textContent = "%" + pct + " tamamlandı";
   document.getElementById("heroEndLabel").textContent = fmtTR(END_DATE);
 
   var elapsedDays = idx;
@@ -958,7 +959,7 @@ function renderHero(){
     if(log && (log.yorugDone || log.sporDone || log.gitarDone)) activeDays++;
     if(log && log.yorugDone && log.sporDone && log.gitarDone) allThree++;
   }
-  document.getElementById("statConsistency").textContent = elapsedDays ? Math.round((activeDays/elapsedDays)*100) + "%" : "â€”";
+  document.getElementById("statConsistency").textContent = elapsedDays ? Math.round((activeDays/elapsedDays)*100) + "%" : "—";
   document.getElementById("statLoggedDays").textContent = state.logs.length;
   document.getElementById("statAll3").textContent = allThree;
 }
@@ -976,15 +977,15 @@ function renderFrontCards(){
     if(frontEditKey === f.key){
       headerBody =
         '<form class="front-edit-form" data-front-edit-form="'+f.key+'">' +
-          '<input type="text" class="front-edit-name" value="'+esc(name)+'" maxlength="28" placeholder="BaÅŸlÄ±k (Ã¶r. YORUG)">' +
-          '<input type="text" class="front-edit-tag" value="'+esc(tag)+'" maxlength="34" placeholder="Alt baÅŸlÄ±k (Ã¶r. Ä°ÅŸ / Marka)">' +
+          '<input type="text" class="front-edit-name" value="'+esc(name)+'" maxlength="28" placeholder="Başlık (ör. YORUG)">' +
+          '<input type="text" class="front-edit-tag" value="'+esc(tag)+'" maxlength="34" placeholder="Alt başlık (ör. İş / Marka)">' +
           '<div class="form-actions"><button type="submit" class="btn" style="padding:5px 10px;">Kaydet</button>' +
-          '<button type="button" class="btn btn-ghost" data-front-edit-cancel="'+f.key+'" style="padding:5px 10px;">VazgeÃ§</button></div>' +
+          '<button type="button" class="btn btn-ghost" data-front-edit-cancel="'+f.key+'" style="padding:5px 10px;">Vazgeç</button></div>' +
         '</form>';
     } else {
       headerBody =
         '<div class="front-titles"><h3>'+esc(name)+'</h3><p class="front-tag">'+esc(tag)+'</p></div>' +
-        '<button type="button" class="icon-btn" data-front-edit="'+f.key+'" aria-label="BaÅŸlÄ±ÄŸÄ± dÃ¼zenle">âœ</button>';
+        '<button type="button" class="icon-btn" data-front-edit="'+f.key+'" aria-label="Başlığı düzenle">✎</button>';
     }
     return '' +
     '<article class="front-card" style="--accent:var(--accent-'+f.accent+')">' +
@@ -996,15 +997,15 @@ function renderFrontCards(){
         '<div class="hbd-row"><span class="hbd-label">HAVE<em>neye sahip olmak istiyorum</em></span>' +
           '<textarea data-scope="goal" data-front="'+f.key+'" data-field="have" placeholder="'+f.have+'">'+esc(g.have)+'</textarea></div>' +
         '<div class="hbd-arrow">'+ICON_ARROW_DOWN+'</div>' +
-        '<div class="hbd-row"><span class="hbd-label">BE<em>buna sahip olan kiÅŸi nasÄ±l biri</em></span>' +
+        '<div class="hbd-row"><span class="hbd-label">BE<em>buna sahip olan kişi nasıl biri</em></span>' +
           '<textarea data-scope="goal" data-front="'+f.key+'" data-field="be" placeholder="'+f.be+'">'+esc(g.be)+'</textarea></div>' +
         '<div class="hbd-arrow">'+ICON_ARROW_DOWN+'</div>' +
-        '<div class="hbd-row"><span class="hbd-label">DO<em>o kiÅŸi dÃ¼zenli olarak ne yapar</em></span>' +
+        '<div class="hbd-row"><span class="hbd-label">DO<em>o kişi düzenli olarak ne yapar</em></span>' +
           '<textarea data-scope="goal" data-front="'+f.key+'" data-field="doText" placeholder="'+f.doText+'">'+esc(g.doText)+'</textarea></div>' +
       '</div>' +
-      '<label class="field-block"><span class="field-label">â›” PazarlÄ±ksÄ±z minimum (kÃ¶tÃ¼ gÃ¼n standardÄ±)</span>' +
+      '<label class="field-block"><span class="field-label">⛔ Pazarlıksız minimum (kötü gün standardı)</span>' +
         '<textarea data-scope="goal" data-front="'+f.key+'" data-field="nonNeg" placeholder="'+f.nonNeg+'">'+esc(g.nonNeg)+'</textarea></label>' +
-      '<label class="field-block"><span class="field-label">ğŸ¯ North Star metrik</span>' +
+      '<label class="field-block"><span class="field-label">🎯 North Star metrik</span>' +
         '<input type="text" data-scope="goal" data-front="'+f.key+'" data-field="northStar" value="'+esc(g.northStar)+'"></label>' +
     '</article>';
   }).join("");
@@ -1041,11 +1042,11 @@ function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").repla
 /* ---------- section labels (front-name propagation) ---------- */
 function renderSectionLabels(){
   var elCalc = document.getElementById("calcEyebrow");
-  if(elCalc) elCalc.textContent = "Reverse Engineer Â· " + frontLabel(FRONTS[0]);
+  if(elCalc) elCalc.textContent = "Reverse Engineer · " + frontLabel(FRONTS[0]);
   var elBase = document.getElementById("baselineEyebrow");
-  if(elBase) elBase.textContent = "Envision Â· " + frontLabel(FRONTS[1]);
+  if(elBase) elBase.textContent = "Envision · " + frontLabel(FRONTS[1]);
   var elDiv = document.getElementById("dividerSporLabel");
-  if(elDiv) elDiv.textContent = frontLabel(FRONTS[1]) + " Â· Ã–lÃ§Ã¼mler";
+  if(elDiv) elDiv.textContent = frontLabel(FRONTS[1]) + " · Ölçümler";
   var thY = document.getElementById("thYorugName"); if(thY) thY.textContent = frontLabel(FRONTS[0]);
   var thS = document.getElementById("thSporName"); if(thS) thS.textContent = frontLabel(FRONTS[1]);
   var thG = document.getElementById("thGitarName"); if(thG) thG.textContent = frontLabel(FRONTS[2]);
@@ -1067,8 +1068,8 @@ function renderCalc(){
   document.getElementById("calcOutPerDay").textContent = perDay;
 
   var rows = [
-    { label:"ZiyaretÃ§i", val:reqVisitors, w:100 },
-    { label:"SatÄ±ÅŸ", val:g.targetSales, w: Math.max(4, (g.targetSales/reqVisitors)*100 || 4) }
+    { label:"Ziyaretçi", val:reqVisitors, w:100 },
+    { label:"Satış", val:g.targetSales, w: Math.max(4, (g.targetSales/reqVisitors)*100 || 4) }
   ];
   document.getElementById("calcFunnel").innerHTML = rows.map(function(r){
     return '<div class="funnel-row"><span class="funnel-label">'+r.label+'</span>' +
@@ -1114,7 +1115,7 @@ function renderDelta(){
       }
     });
   });
-  out.innerHTML = chips.join("") || '<span style="color:var(--ink-muted);font-size:0.82rem;">KarÅŸÄ±laÅŸtÄ±rma iÃ§in baÅŸlangÄ±Ã§ ve kontrol noktasÄ± Ã¶lÃ§Ã¼mlerini gir.</span>';
+  out.innerHTML = chips.join("") || '<span style="color:var(--ink-muted);font-size:0.82rem;">Karşılaştırma için başlangıç ve kontrol noktası ölçümlerini gir.</span>';
 }
 
 /* ---------- checklists (dragons / installs) ---------- */
@@ -1123,8 +1124,8 @@ function renderChecklists(){
   grid.innerHTML = FRONTS.map(function(f){
     return '<div class="checklist-col" style="--accent:var(--accent-'+f.accent+')">' +
       '<h3 style="font-size:1rem;">'+esc(frontLabel(f))+'</h3>' +
-      renderChecklistSub(f.key,"dragons","ğŸ‰ Ejderhalar (uzak dur)") +
-      renderChecklistSub(f.key,"installs","ğŸ”§ Kurulumlar (kolaylaÅŸtÄ±r)") +
+      renderChecklistSub(f.key,"dragons","🐉 Ejderhalar (uzak dur)") +
+      renderChecklistSub(f.key,"installs","🔧 Kurulumlar (kolaylaştır)") +
     '</div>';
   }).join("");
   wireChecklistForms();
@@ -1135,12 +1136,12 @@ function renderChecklistSub(front,type,title){
     return '<li class="cl-item'+(item.done?' done':'')+'">' +
       '<input type="checkbox" '+(item.done?'checked':'')+' data-cl-toggle="'+front+'|'+type+'|'+i+'">' +
       '<span class="txt">'+esc(item.text)+'</span>' +
-      '<button type="button" data-cl-remove="'+front+'|'+type+'|'+i+'" aria-label="Sil">âœ•</button>' +
+      '<button type="button" data-cl-remove="'+front+'|'+type+'|'+i+'" aria-label="Sil">✕</button>' +
     '</li>';
   }).join("");
   return '<div class="checklist-sub"><h4>'+title+'</h4>' +
     '<ul class="cl-list">'+(lis||'')+'</ul>' +
-    '<div class="cl-add"><input type="text" placeholder="Yeni ekleâ€¦" data-cl-input="'+front+'|'+type+'">' +
+    '<div class="cl-add"><input type="text" placeholder="Yeni ekle…" data-cl-input="'+front+'|'+type+'">' +
     '<button type="button" class="btn" data-cl-add="'+front+'|'+type+'">+</button></div></div>';
 }
 function wireChecklistForms(){
@@ -1184,11 +1185,11 @@ function renderTimeAudit(){
   var body = document.getElementById("auditBody");
   body.innerHTML = state.timeAudit.map(function(row,i){
     var cls = row.tag === "green" ? "green" : row.tag === "red" ? "red" : "neutral";
-    var label = row.tag === "green" ? "ğŸŸ¢" : row.tag === "red" ? "ğŸ”´" : "âšª";
+    var label = row.tag === "green" ? "🟢" : row.tag === "red" ? "🔴" : "⚪";
     return '<tr><td>'+esc(row.activity)+'</td><td class="num">'+row.minutes+'</td>' +
       '<td><button type="button" class="tag-pill '+cls+'" data-audit-tag="'+i+'">'+label+'</button></td>' +
-      '<td><button type="button" class="btn-ghost btn" data-audit-remove="'+i+'" aria-label="Sil">âœ•</button></td></tr>';
-  }).join("") || '<tr><td colspan="4" style="color:var(--ink-muted);">HenÃ¼z kayÄ±t yok.</td></tr>';
+      '<td><button type="button" class="btn-ghost btn" data-audit-remove="'+i+'" aria-label="Sil">✕</button></td></tr>';
+  }).join("") || '<tr><td colspan="4" style="color:var(--ink-muted);">Henüz kayıt yok.</td></tr>';
 
   var green=0, red=0;
   state.timeAudit.forEach(function(r){ if(r.tag==="green") green+=r.minutes; if(r.tag==="red") red+=r.minutes; });
@@ -1232,7 +1233,7 @@ function renderMilestones(){
       return '<div class="ms-block">' +
         '<div class="ms-head"><span class="ms-day">'+cp.toUpperCase()+'</span><span class="ms-date mono">'+fmtTR(dates[cp])+'</span></div>' +
         '<textarea data-scope="milestone" data-front="'+f.key+'" data-milestone="'+cp+'" data-field="text" placeholder="'+f[cp]+'">'+esc(ms[cp])+'</textarea>' +
-        '<label class="ms-check"><input type="checkbox" data-scope="milestone" data-front="'+f.key+'" data-milestone="'+cp+'" data-field="done" '+(done[cp]?'checked':'')+'> ulaÅŸÄ±ldÄ±</label>' +
+        '<label class="ms-check"><input type="checkbox" data-scope="milestone" data-front="'+f.key+'" data-milestone="'+cp+'" data-field="done" '+(done[cp]?'checked':'')+'> ulaşıldı</label>' +
       '</div>';
     }).join("");
     return '<div class="milestone-col" style="--accent:var(--accent-'+f.accent+')"><h3 style="font-size:1rem;">'+esc(frontLabel(f))+'</h3>'+blocks+'</div>';
@@ -1252,26 +1253,26 @@ function renderScoreForm(){
   groups.innerHTML = FRONTS.map(function(f){
     if(f.key==="yorug"){
       return '<div class="score-group" style="--accent:var(--accent-yorug)"><h4>'+esc(frontLabel(f))+'</h4>' +
-        '<label class="chk"><input type="checkbox" id="in_yorugDone"> BugÃ¼n bir satÄ±ÅŸ aksiyonu aldÄ±m</label>' +
-        '<div class="mini-fields"><label>SatÄ±ÅŸ adedi<input type="number" min="0" id="in_satis" value="0"></label>' +
-        '<label>ZiyaretÃ§i<input type="number" min="0" id="in_ziyaretci" value="0"></label></div></div>';
+        '<label class="chk"><input type="checkbox" id="in_yorugDone"> Bugün bir satış aksiyonu aldım</label>' +
+        '<div class="mini-fields"><label>Satış adedi<input type="number" min="0" id="in_satis" value="0"></label>' +
+        '<label>Ziyaretçi<input type="number" min="0" id="in_ziyaretci" value="0"></label></div></div>';
     }
     if(f.key==="spor"){
       return '<div class="score-group" style="--accent:var(--accent-spor)"><h4>'+esc(frontLabel(f))+'</h4>' +
-        '<label class="chk"><input type="checkbox" id="in_sporDone"> BugÃ¼n hareket ettim / minimumu yaptÄ±m</label>' +
+        '<label class="chk"><input type="checkbox" id="in_sporDone"> Bugün hareket ettim / minimumu yaptım</label>' +
         '<div class="mini-fields"><label>Dakika<input type="number" min="0" id="in_sporMin" value="0"></label></div></div>';
     }
     return '<div class="score-group" style="--accent:var(--accent-gitar)"><h4>'+esc(frontLabel(f))+'</h4>' +
-      '<label class="chk"><input type="checkbox" id="in_gitarDone"> BugÃ¼n Ã§aldÄ±m (min. 15 dk standardÄ± dahil)</label>' +
+      '<label class="chk"><input type="checkbox" id="in_gitarDone"> Bugün çaldım (min. 15 dk standardı dahil)</label>' +
       '<div class="mini-fields"><label>Dakika<input type="number" min="0" id="in_gitarMin" value="0"></label></div></div>';
   }).join("");
 
   var existing = findLog(document.getElementById("scoreDate").value);
-  document.getElementById("scoreFormHint").textContent = existing ? "Bu tarih iÃ§in kayÄ±t var â€” kaydet, Ã¼zerine yazÄ±lÄ±r." : "";
+  document.getElementById("scoreFormHint").textContent = existing ? "Bu tarih için kayıt var — kaydet, üzerine yazılır." : "";
 }
 document.getElementById("scoreDate").addEventListener("change", function(){
   var ex = findLog(this.value);
-  document.getElementById("scoreFormHint").textContent = ex ? "Bu tarih iÃ§in kayÄ±t var â€” kaydet, Ã¼zerine yazÄ±lÄ±r." : "";
+  document.getElementById("scoreFormHint").textContent = ex ? "Bu tarih için kayıt var — kaydet, üzerine yazılır." : "";
   if(ex) fillScoreFormFrom(ex);
 });
 function fillScoreFormFrom(log){
@@ -1300,7 +1301,7 @@ document.getElementById("scoreForm").addEventListener("submit", function(e){
   if(idx>=0) state.logs[idx]=entry; else state.logs.push(entry);
   state.logs.sort(function(a,b){ return a.date<b.date?-1:1; });
   saveState();
-  showStatus("GÃ¼n kaydedildi: "+date);
+  showStatus("Gün kaydedildi: "+date);
   renderAll();
 });
 
@@ -1342,9 +1343,9 @@ function renderStreaks(){
     var warn = missedTwice(f.key);
     return '<div class="streak-tile" style="--accent:var(--accent-'+f.accent+')">' +
       '<div class="streak-name">'+esc(frontLabel(f))+'</div>' +
-      '<div class="streak-num"><span class="flame">ğŸ”¥</span> '+s+' gÃ¼n</div>' +
+      '<div class="streak-num"><span class="flame">🔥</span> '+s+' gün</div>' +
       '<div class="ns">'+esc(state.goals[f.key].northStar)+': <b>'+nsVals[f.key]+'</b></div>' +
-      (warn ? '<div class="badge critical" style="margin-top:8px;">âš  Ä°ki gÃ¼n Ã¼st Ã¼ste kaÃ§Ä±rdÄ±n</div>' : '') +
+      (warn ? '<div class="badge critical" style="margin-top:8px;">⚠ İki gün üst üste kaçırdın</div>' : '') +
     '</div>';
   }).join("");
 }
@@ -1362,9 +1363,9 @@ function renderHeatmap(){
       var style = "";
       if(log){
         var done = !!log[f.key+"Done"];
-        if(done){ style = "background:var(--accent-"+f.accent+");border-color:var(--accent-"+f.accent+");"; title += " â€” yapÄ±ldÄ±"; }
-        else { style = "background:transparent;border:1.5px solid var(--accent-"+f.accent+");opacity:.55;"; title += " â€” kaÃ§Ä±rÄ±ldÄ±"; }
-      } else { title += " â€” kayÄ±t yok"; }
+        if(done){ style = "background:var(--accent-"+f.accent+");border-color:var(--accent-"+f.accent+");"; title += " — yapıldı"; }
+        else { style = "background:transparent;border:1.5px solid var(--accent-"+f.accent+");opacity:.55;"; title += " — kaçırıldı"; }
+      } else { title += " — kayıt yok"; }
       return '<span class="heatmap-cell" style="'+style+'" title="'+title+'"></span>';
     }).join("");
     return '<div class="heatmap-line"><span class="heatmap-name">'+esc(frontLabel(f))+'</span><span class="heatmap-cells">'+cells+'</span></div>';
@@ -1373,7 +1374,7 @@ function renderHeatmap(){
 function buildSparkline(entries, valueKey, accentVar){
   var w=280, h=64, gap=3;
   var n = entries.length;
-  if(n===0) return '<svg viewBox="0 0 '+w+' '+h+'"><text x="8" y="34" fill="var(--ink-muted)" font-size="11">HenÃ¼z veri yok.</text></svg>';
+  if(n===0) return '<svg viewBox="0 0 '+w+' '+h+'"><text x="8" y="34" fill="var(--ink-muted)" font-size="11">Henüz veri yok.</text></svg>';
   var vals = entries.map(function(e){ return e[valueKey]||0; });
   var max = Math.max(1, Math.max.apply(null, vals));
   var barW = Math.max(2,(w-gap*(n-1))/n);
@@ -1395,20 +1396,20 @@ function renderSparklines(){
   var block = document.getElementById("sparkBlock");
   var last14 = state.logs.slice(-14);
   block.innerHTML =
-    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[0]))+' Â· gÃ¼nlÃ¼k satÄ±ÅŸ (son 14 kayÄ±t)</h4>'+buildSparkline(last14,"satis","var(--accent-yorug)")+'</div>' +
-    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[1]))+' Â· dakika (son 14 kayÄ±t)</h4>'+buildSparkline(last14,"sporMin","var(--accent-spor)")+'</div>' +
-    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[2]))+' Â· dakika (son 14 kayÄ±t)</h4>'+buildSparkline(last14,"gitarMin","var(--accent-gitar)")+'</div>';
+    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[0]))+' · günlük satış (son 14 kayıt)</h4>'+buildSparkline(last14,"satis","var(--accent-yorug)")+'</div>' +
+    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[1]))+' · dakika (son 14 kayıt)</h4>'+buildSparkline(last14,"sporMin","var(--accent-spor)")+'</div>' +
+    '<div class="spark-card"><h4>'+esc(frontLabel(FRONTS[2]))+' · dakika (son 14 kayıt)</h4>'+buildSparkline(last14,"gitarMin","var(--accent-gitar)")+'</div>';
 }
 function renderLogTable(){
   var body = document.getElementById("logBody");
   var rows = state.logs.slice().sort(function(a,b){ return a.date<b.date?1:-1; });
   body.innerHTML = rows.map(function(l){
     return '<tr><td class="mono">'+l.date+'</td>' +
-      '<td>'+(l.yorugDone?'âœ…':'â€”')+'</td><td class="num">'+l.satis+'</td><td class="num">'+l.ziyaretci+'</td>' +
-      '<td>'+(l.sporDone?'âœ…':'â€”')+'</td><td class="num">'+l.sporMin+'</td>' +
-      '<td>'+(l.gitarDone?'âœ…':'â€”')+'</td><td class="num">'+l.gitarMin+'</td>' +
-      '<td><button type="button" class="btn-ghost btn" data-log-remove="'+l.date+'" aria-label="Sil">âœ•</button></td></tr>';
-  }).join("") || '<tr><td colspan="9" style="color:var(--ink-muted);">HenÃ¼z kayÄ±t yok â€” yukarÄ±dan bugÃ¼nÃ¼ kaydet.</td></tr>';
+      '<td>'+(l.yorugDone?'✅':'—')+'</td><td class="num">'+l.satis+'</td><td class="num">'+l.ziyaretci+'</td>' +
+      '<td>'+(l.sporDone?'✅':'—')+'</td><td class="num">'+l.sporMin+'</td>' +
+      '<td>'+(l.gitarDone?'✅':'—')+'</td><td class="num">'+l.gitarMin+'</td>' +
+      '<td><button type="button" class="btn-ghost btn" data-log-remove="'+l.date+'" aria-label="Sil">✕</button></td></tr>';
+  }).join("") || '<tr><td colspan="9" style="color:var(--ink-muted);">Henüz kayıt yok — yukarıdan bugünü kaydet.</td></tr>';
   document.querySelectorAll("[data-log-remove]").forEach(function(btn){
     btn.addEventListener("click", function(){
       var date = btn.dataset.logRemove;
@@ -1431,13 +1432,13 @@ document.getElementById("weeklyForm").addEventListener("submit", function(e){
     change1: document.getElementById("weekChange1").value.trim(),
     change2: document.getElementById("weekChange2").value.trim()
   };
-  if(!entry.gozlem && !entry.change1) { showStatus("Ã–nce gÃ¶zlem ya da deÄŸiÅŸiklik yaz.", true); return; }
+  if(!entry.gozlem && !entry.change1) { showStatus("Önce gözlem ya da değişiklik yaz.", true); return; }
   state.weekly.unshift(entry);
   document.getElementById("weekObs").value = "";
   document.getElementById("weekChange1").value = "";
   document.getElementById("weekChange2").value = "";
   saveState();
-  showStatus("HaftalÄ±k deÄŸerlendirme kaydedildi.");
+  showStatus("Haftalık değerlendirme kaydedildi.");
   renderWeeklyList();
 });
 function renderWeeklyList(){
@@ -1446,12 +1447,12 @@ function renderWeeklyList(){
     var start = parseISO(w.weekOf);
     var end = addDays(start,6);
     var chips = [];
-    if(w.change1) chips.push('<span class="chip">â†’ '+esc(w.change1)+'</span>');
-    if(w.change2) chips.push('<span class="chip">â†’ '+esc(w.change2)+'</span>');
-    return '<li class="weekly-item"><div class="wk-date">'+fmtTR(start)+' â€“ '+fmtTR(end)+'</div>' +
+    if(w.change1) chips.push('<span class="chip">→ '+esc(w.change1)+'</span>');
+    if(w.change2) chips.push('<span class="chip">→ '+esc(w.change2)+'</span>');
+    return '<li class="weekly-item"><div class="wk-date">'+fmtTR(start)+' – '+fmtTR(end)+'</div>' +
       (w.gozlem?'<p>'+esc(w.gozlem)+'</p>':'') +
       '<div class="chips">'+chips.join("")+'</div></li>';
-  }).join("") || '<li style="color:var(--ink-muted);font-size:0.88rem;">HenÃ¼z haftalÄ±k deÄŸerlendirme yok.</li>';
+  }).join("") || '<li style="color:var(--ink-muted);font-size:0.88rem;">Henüz haftalık değerlendirme yok.</li>';
 }
 
 /* ---------- status / footer actions ---------- */
@@ -1476,11 +1477,11 @@ function armConfirm(btn, label, confirmLabel, action){
     }
   });
 }
-armConfirm(document.getElementById("resetBtn"), "Verileri sÄ±fÄ±rla", "Emin misin? Tekrar tÄ±kla", function(){
+armConfirm(document.getElementById("resetBtn"), "Verileri sıfırla", "Emin misin? Tekrar tıkla", function(){
   state = defaultState();
   saveState();
   renderAll();
-  showStatus("'"+currentProfileName()+"' kullanÄ±cÄ±sÄ±nÄ±n verileri sÄ±fÄ±rlandÄ±.");
+  showStatus("'"+currentProfileName()+"' kullanıcısının verileri sıfırlandı.");
 });
 
 document.getElementById("exportBtn").addEventListener("click", function(){
@@ -1488,10 +1489,10 @@ document.getElementById("exportBtn").addEventListener("click", function(){
   var data = JSON.stringify(profiles, null, 2);
   if(window.claude && window.claude.downloads){
     window.claude.downloads.save({ filename: filename, data: data }).then(function(){
-      showStatus("Yedek indirildi (tÃ¼m kullanÄ±cÄ±lar dahil).");
+      showStatus("Yedek indirildi (tüm kullanıcılar dahil).");
     }).catch(function(err){
-      if(err && err.code==="declined") showStatus("Ä°ndirme iptal edildi.");
-      else showStatus("Ä°ndirme baÅŸarÄ±sÄ±z: "+((err&&err.message)||"bilinmeyen hata"), true);
+      if(err && err.code==="declined") showStatus("İndirme iptal edildi.");
+      else showStatus("İndirme başarısız: "+((err&&err.message)||"bilinmeyen hata"), true);
     });
     return;
   }
@@ -1502,9 +1503,9 @@ document.getElementById("exportBtn").addEventListener("click", function(){
     a.href = url; a.download = filename;
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
-    showStatus("Yedek indirildi (tÃ¼m kullanÄ±cÄ±lar dahil).");
+    showStatus("Yedek indirildi (tüm kullanıcılar dahil).");
   }catch(err){
-    showStatus("Ä°ndirme baÅŸarÄ±sÄ±z.", true);
+    showStatus("İndirme başarısız.", true);
   }
 });
 
@@ -1516,7 +1517,7 @@ document.getElementById("importInput").addEventListener("change", function(e){
     try{
       var parsed = JSON.parse(reader.result);
       if(parsed && Array.isArray(parsed.list) && parsed.data){
-        if(!parsed.list.length) throw new Error("geÃ§ersiz dosya");
+        if(!parsed.list.length) throw new Error("geçersiz dosya");
         parsed.list = parsed.list.slice(0, MAX_PROFILES);
         var newData = {};
         parsed.list.forEach(function(p){ newData[p.id] = repairState(parsed.data[p.id] || defaultState()); });
@@ -1524,17 +1525,17 @@ document.getElementById("importInput").addEventListener("change", function(e){
         state = profiles.data[profiles.activeId];
         saveProfiles();
         renderAll();
-        showStatus("TÃ¼m kullanÄ±cÄ± verileri iÃ§e aktarÄ±ldÄ±.");
+        showStatus("Tüm kullanıcı verileri içe aktarıldı.");
       } else if(parsed && parsed.goals){
         state = repairState(parsed);
         saveState();
         renderAll();
-        showStatus("Veriler '"+currentProfileName()+"' kullanÄ±cÄ±sÄ±na aktarÄ±ldÄ±.");
+        showStatus("Veriler '"+currentProfileName()+"' kullanıcısına aktarıldı.");
       } else {
-        throw new Error("geÃ§ersiz dosya");
+        throw new Error("geçersiz dosya");
       }
     }catch(err){
-      showStatus("Dosya okunamadÄ±: geÃ§ersiz JSON.", true);
+      showStatus("Dosya okunamadı: geçersiz JSON.", true);
     }
   };
   reader.readAsText(file);
